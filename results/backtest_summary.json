@@ -1,0 +1,95 @@
+{
+  "test_from": "2019-01-01",
+  "test_to": "2026-07-31",
+  "universe_size": 747,
+  "regime_share": {
+    "risk_on": 0.363,
+    "risk_off": 0.352,
+    "neutral": 0.284
+  },
+  "delivery_data": true,
+  "pass_bar": {
+    "avg_r": 0.2,
+    "years_beating_nifty500": 0.6
+  },
+  "results": {
+    "next_day/with_regime": {
+      "signals": 9658,
+      "trades": 7235,
+      "trigger_rate": 0.7491199006005385,
+      "hit_rate": 0.06841741534208708,
+      "win_rate": 0.2978576364892882,
+      "avg_r": -0.2503806207285998,
+      "avg_net_return": -0.008045507373731204,
+      "avg_excess_return": -0.009500631575822396,
+      "years_beating_nifty500": 0.0,
+      "max_drawdown_r": 1811.1279754175985,
+      "passes": false
+    },
+    "next_day/always_top10": {
+      "signals": 18710,
+      "trades": 13523,
+      "trigger_rate": 0.7227685729556387,
+      "hit_rate": 0.06071138061081121,
+      "win_rate": 0.2988981734822155,
+      "avg_r": -0.2553897862350024,
+      "avg_net_return": -0.00864576136829851,
+      "avg_excess_return": -0.010580320133275888,
+      "years_beating_nifty500": 0.0,
+      "max_drawdown_r": 3453.26026370212,
+      "passes": false
+    },
+    "next_week/with_regime": {
+      "signals": 10551,
+      "trades": 6396,
+      "trigger_rate": 0.6061984646005119,
+      "hit_rate": 0.1224202626641651,
+      "win_rate": 0.383364602876798,
+      "avg_r": -0.1480000663567587,
+      "avg_net_return": -0.007992881644643608,
+      "avg_excess_return": -0.010667077886603567,
+      "years_beating_nifty500": 0.0,
+      "max_drawdown_r": 962.3023361287986,
+      "passes": false
+    },
+    "next_week/always_top10": {
+      "signals": 18710,
+      "trades": 10985,
+      "trigger_rate": 0.5871191876002138,
+      "hit_rate": 0.11825216203914429,
+      "win_rate": 0.3889849795175239,
+      "avg_r": -0.13947547801962762,
+      "avg_net_return": -0.007608060282560152,
+      "avg_excess_return": -0.01147507837176528,
+      "years_beating_nifty500": 0.0,
+      "max_drawdown_r": 1578.9611977081302,
+      "passes": false
+    },
+    "next_month/with_regime": {
+      "signals": 12120,
+      "trades": 12120,
+      "trigger_rate": 1.0,
+      "hit_rate": 0.472029702970297,
+      "win_rate": 0.5392739273927393,
+      "avg_r": 0.3643593842556659,
+      "avg_net_return": 0.03919274561624857,
+      "avg_excess_return": 0.022433466328692926,
+      "years_beating_nifty500": 0.75,
+      "max_drawdown_r": 400.1075338173858,
+      "passes": true
+    },
+    "next_month/always_top10": {
+      "signals": 18622,
+      "trades": 18622,
+      "trigger_rate": 1.0,
+      "hit_rate": 0.4500590699173021,
+      "win_rate": 0.5247556653420685,
+      "avg_r": 0.297498647001029,
+      "avg_net_return": 0.033633449535149636,
+      "avg_excess_return": 0.011639874497621884,
+      "years_beating_nifty500": 0.625,
+      "max_drawdown_r": 686.245434415614,
+      "passes": true
+    }
+  }
+}

@@ -1,0 +1,756 @@
+symbol,company,industry,segment
+360ONE,360 ONE WAM Ltd.,Financial Services,mid
+ABB,ABB India Ltd.,Capital Goods,large
+ACC,ACC Ltd.,Construction Materials,small
+ACMESOLAR,ACME Solar Holdings Ltd.,Power,small
+AIAENG,AIA Engineering Ltd.,Capital Goods,mid
+APLAPOLLO,APL Apollo Tubes Ltd.,Capital Goods,mid
+AUBANK,AU Small Finance Bank Ltd.,Financial Services,mid
+AWL,AWL Agri Business Ltd.,Fast Moving Consumer Goods,small
+AADHARHFC,Aadhar Housing Finance Ltd.,Financial Services,small
+AARTIIND,Aarti Industries Ltd.,Chemicals,small
+AAVAS,Aavas Financiers Ltd.,Financial Services,small
+ABBOTINDIA,Abbott India Ltd.,Healthcare,mid
+ACE,Action Construction Equipment Ltd.,Capital Goods,small
+ACUTAAS,Acutaas Chemicals Ltd.,Healthcare,small
+ADANIENSOL,Adani Energy Solutions Ltd.,Power,large
+ADANIENT,Adani Enterprises Ltd.,Metals & Mining,large
+ADANIGREEN,Adani Green Energy Ltd.,Power,large
+ADANIPORTS,Adani Ports and Special Economic Zone Ltd.,Services,large
+ADANIPOWER,Adani Power Ltd.,Power,large
+ATGL,Adani Total Gas Ltd.,Oil Gas & Consumable Fuels,mid
+ABCAPITAL,Aditya Birla Capital Ltd.,Financial Services,mid
+ABREL,Aditya Birla Real Estate Ltd.,Realty,small
+ABSLAMC,Aditya Birla Sun Life AMC Ltd.,Financial Services,small
+CPPLUS,Aditya Infotech Ltd.,Capital Goods,small
+AEGISLOG,Aegis Logistics Ltd.,Oil Gas & Consumable Fuels,small
+AEGISVOPAK,Aegis Vopak Terminals Ltd.,Oil Gas & Consumable Fuels,small
+AETHER,Aether Industries Ltd.,Chemicals,small
+AFCONS,Afcons Infrastructure Ltd.,Construction,small
+AFFLE,Affle 3i Ltd.,Information Technology,small
+AJANTPHARM,Ajanta Pharmaceuticals Ltd.,Healthcare,mid
+ALKEM,Alkem Laboratories Ltd.,Healthcare,mid
+ABDL,Allied Blenders and Distillers Ltd.,Fast Moving Consumer Goods,small
+ARE&M,Amara Raja Energy & Mobility Ltd.,Automobile and Auto Components,small
+AMBER,Amber Enterprises India Ltd.,Consumer Durables,small
+AMBUJACEM,Ambuja Cements Ltd.,Construction Materials,large
+ANANDRATHI,Anand Rathi Wealth Ltd.,Financial Services,small
+ANANTRAJ,Anant Raj Ltd.,Realty,small
+ANGELONE,Angel One Ltd.,Financial Services,small
+ANTHEM,Anthem Biosciences Ltd.,Healthcare,mid
+ANURAS,Anupam Rasayan India Ltd.,Chemicals,small
+APARINDS,Apar Industries Ltd.,Capital Goods,mid
+APOLLOHOSP,Apollo Hospitals Enterprise Ltd.,Healthcare,large
+APOLLOTYRE,Apollo Tyres Ltd.,Automobile and Auto Components,small
+APTUS,Aptus Value Housing Finance India Ltd.,Financial Services,small
+ASAHIINDIA,Asahi India Glass Ltd.,Automobile and Auto Components,small
+ASHOKLEY,Ashok Leyland Ltd.,Capital Goods,mid
+ASIANPAINT,Asian Paints Ltd.,Consumer Durables,large
+ASTERDM,Aster DM Quality Care Ltd.,Healthcare,mid
+ASTRAL,Astral Ltd.,Capital Goods,mid
+ATHERENERG,Ather Energy Ltd.,Automobile and Auto Components,small
+ATUL,Atul Ltd.,Chemicals,small
+AUROPHARMA,Aurobindo Pharma Ltd.,Healthcare,mid
+AIIL,Authum Investment & Infrastructure Ltd.,Financial Services,mid
+AVANTIFEED,Avanti Feeds Ltd.,Fast Moving Consumer Goods,small
+DMART,Avenue Supermarts Ltd.,Consumer Services,large
+AXISBANK,Axis Bank Ltd.,Financial Services,large
+AZAD,Azad Engineering Ltd.,Capital Goods,small
+BEML,BEML Ltd.,Capital Goods,small
+BLS,BLS International Services Ltd.,Consumer Services,small
+BSE,BSE Ltd.,Financial Services,large
+BAGMANE,Bagmane Prime Office REIT,Realty,small
+BAJAJ-AUTO,Bajaj Auto Ltd.,Automobile and Auto Components,large
+BAJFINANCE,Bajaj Finance Ltd.,Financial Services,large
+BAJAJFINSV,Bajaj Finserv Ltd.,Financial Services,large
+BAJAJHLDNG,Bajaj Holdings & Investment Ltd.,Financial Services,large
+BAJAJHFL,Bajaj Housing Finance Ltd.,Financial Services,mid
+BALKRISIND,Balkrishna Industries Ltd.,Automobile and Auto Components,mid
+BALRAMCHIN,Balrampur Chini Mills Ltd.,Fast Moving Consumer Goods,small
+BANDHANBNK,Bandhan Bank Ltd.,Financial Services,small
+BANKBARODA,Bank of Baroda,Financial Services,large
+BANKINDIA,Bank of India,Financial Services,mid
+MAHABANK,Bank of Maharashtra,Financial Services,mid
+BATAINDIA,Bata India Ltd.,Consumer Durables,small
+BELRISE,Belrise Industries Ltd.,Automobile and Auto Components,small
+BERGEPAINT,Berger Paints India Ltd.,Consumer Durables,mid
+BHARATCOAL,Bharat Coking Coal Ltd.,Oil Gas & Consumable Fuels,small
+BDL,Bharat Dynamics Ltd.,Capital Goods,mid
+BEL,Bharat Electronics Ltd.,Capital Goods,large
+BHARATFORG,Bharat Forge Ltd.,Automobile and Auto Components,mid
+BHEL,Bharat Heavy Electricals Ltd.,Capital Goods,mid
+BPCL,Bharat Petroleum Corporation Ltd.,Oil Gas & Consumable Fuels,large
+BHARTIARTL,Bharti Airtel Ltd.,Telecommunication,large
+BHARTIHEXA,Bharti Hexacom Ltd.,Telecommunication,mid
+GROWW,Billionbrains Garage Ventures Ltd.,Financial Services,mid
+BIOCON,Biocon Ltd.,Healthcare,mid
+BSOFT,Birlasoft Ltd.,Information Technology,small
+BBOX,Black Box Ltd.,Information Technology,small
+BLUESTARCO,Blue Star Ltd.,Consumer Durables,mid
+BOSCHLTD,Bosch Ltd.,Automobile and Auto Components,large
+FIRSTCRY,Brainbees Solutions Ltd.,Consumer Services,small
+BRIGADE,Brigade Enterprises Ltd.,Realty,small
+BRITANNIA,Britannia Industries Ltd.,Fast Moving Consumer Goods,large
+BIRET,Brookfield India Real Estate Trust,Realty,small
+CCL,CCL Products (I) Ltd.,Fast Moving Consumer Goods,small
+CESC,CESC Ltd.,Power,small
+CGPOWER,CG Power and Industrial Solutions Ltd.,Capital Goods,large
+CIEINDIA,CIE Automotive India Ltd.,Automobile and Auto Components,small
+CRISIL,CRISIL Ltd.,Financial Services,mid
+CANFINHOME,Can Fin Homes Ltd.,Financial Services,small
+CANBK,Canara Bank,Financial Services,large
+CANHLIFE,Canara HSBC Life Insurance Company Ltd.,Financial Services,small
+CAPLIPOINT,Caplin Point Laboratories Ltd.,Healthcare,small
+CGCL,Capri Global Capital Ltd.,Financial Services,small
+CARBORUNIV,Carborundum Universal Ltd.,Capital Goods,small
+CARTRADE,Cartrade Tech Ltd.,Consumer Services,small
+CASTROLIND,Castrol India Ltd.,Oil Gas & Consumable Fuels,small
+CEATLTD,Ceat Ltd.,Automobile and Auto Components,small
+CEMPRO,Cemindia Projects Ltd.,Construction,small
+CENTRALBK,Central Bank of India,Financial Services,small
+CDSL,Central Depository Services (India) Ltd.,Financial Services,small
+CMPDI,Central Mine Planning & Design Institute Ltd.,Services,small
+CHAMBLFERT,Chambal Fertilizers & Chemicals Ltd.,Chemicals,small
+CHENNPETRO,Chennai Petroleum Corporation Ltd.,Oil Gas & Consumable Fuels,small
+CHOICEIN,Choice International Ltd.,Financial Services,small
+CHOLAHLDNG,Cholamandalam Financial Holdings Ltd.,Financial Services,small
+CHOLAFIN,Cholamandalam Investment and Finance Company Ltd.,Financial Services,large
+CIPLA,Cipla Ltd.,Healthcare,large
+CUB,City Union Bank Ltd.,Financial Services,small
+CLEANMAX,Clean Max Enviro Energy Solutions Ltd.,Power,small
+CLEAN,Clean Science and Technology Ltd.,Chemicals,small
+COALINDIA,Coal India Ltd.,Oil Gas & Consumable Fuels,large
+COCHINSHIP,Cochin Shipyard Ltd.,Capital Goods,mid
+COFORGE,Coforge Ltd.,Information Technology,mid
+COHANCE,Cohance Lifesciences Ltd.,Healthcare,small
+COLPAL,Colgate Palmolive (India) Ltd.,Fast Moving Consumer Goods,mid
+CAMS,Computer Age Management Services Ltd.,Financial Services,small
+CONCORDBIO,Concord Biotech Ltd.,Healthcare,small
+CONCOR,Container Corporation of India Ltd.,Services,mid
+COROMANDEL,Coromandel International Ltd.,Chemicals,mid
+CRAFTSMAN,Craftsman Automation Ltd.,Automobile and Auto Components,small
+CREDITACC,CreditAccess Grameen Ltd.,Financial Services,small
+CROMPTON,Crompton Greaves Consumer Electricals Ltd.,Consumer Durables,small
+CUMMINSIND,Cummins India Ltd.,Capital Goods,large
+CUPID,Cupid Ltd.,Fast Moving Consumer Goods,small
+CYIENT,Cyient Ltd.,Information Technology,small
+DLF,DLF Ltd.,Realty,large
+DOMS,DOMS Industries Ltd.,Fast Moving Consumer Goods,small
+DABUR,Dabur India Ltd.,Fast Moving Consumer Goods,mid
+DALBHARAT,Dalmia Bharat Ltd.,Construction Materials,mid
+DATAPATTNS,Data Patterns (India) Ltd.,Capital Goods,small
+DEEPAKFERT,Deepak Fertilisers & Petrochemicals Corp. Ltd.,Chemicals,small
+DEEPAKNTR,Deepak Nitrite Ltd.,Chemicals,small
+DELHIVERY,Delhivery Ltd.,Services,small
+DEVYANI,Devyani International Ltd.,Consumer Services,small
+DIVISLAB,Divi's Laboratories Ltd.,Healthcare,large
+DIXON,Dixon Technologies (India) Ltd.,Consumer Durables,mid
+LALPATHLAB,Dr. Lal Path Labs Ltd.,Healthcare,small
+DRREDDY,Dr. Reddy's Laboratories Ltd.,Healthcare,large
+DUMMYHEG,Dummy HEG Ltd.,Capital Goods,small
+EIDPARRY,E.I.D. Parry (India) Ltd.,Fast Moving Consumer Goods,small
+EIHOTEL,EIH Ltd.,Consumer Services,small
+EMBASSY,EMBASSY OFFICE PARKS REIT,Realty,mid
+EICHERMOT,Eicher Motors Ltd.,Automobile and Auto Components,large
+ELECON,Elecon Engineering Co. Ltd.,Capital Goods,small
+ELGIEQUIP,Elgi Equipments Ltd.,Capital Goods,small
+EMAMILTD,Emami Ltd.,Fast Moving Consumer Goods,small
+EMCURE,Emcure Pharmaceuticals Ltd.,Healthcare,small
+EMMVEE,Emmvee Photovoltaic Power Ltd.,Capital Goods,small
+ENDURANCE,Endurance Technologies Ltd.,Automobile and Auto Components,mid
+ENGINERSIN,Engineers India Ltd.,Construction,small
+ESCORTS,Escorts Kubota Ltd.,Capital Goods,mid
+ETERNAL,Eternal Ltd.,Consumer Services,large
+EXIDEIND,Exide Industries Ltd.,Automobile and Auto Components,mid
+NYKAA,FSN E-Commerce Ventures Ltd.,Consumer Services,mid
+FEDERALBNK,Federal Bank Ltd.,Financial Services,mid
+FACT,Fertilisers and Chemicals Travancore Ltd.,Chemicals,mid
+FINCABLES,Finolex Cables Ltd.,Capital Goods,small
+FSL,Firstsource Solutions Ltd.,Services,small
+FIVESTAR,Five-Star Business Finance Ltd.,Financial Services,small
+FORCEMOT,Force Motors Ltd.,Automobile and Auto Components,small
+FORTIS,Fortis Healthcare Ltd.,Healthcare,mid
+FRACTAL,Fractal Analytics Ltd.,Information Technology,small
+GAIL,GAIL (India) Ltd.,Oil Gas & Consumable Fuels,large
+GVT&D,GE Vernova T&D India Ltd.,Capital Goods,mid
+GMRAIRPORT,GMR Airports Ltd.,Services,mid
+GABRIEL,Gabriel India Ltd.,Automobile and Auto Components,small
+GALLANTT,Gallantt Ispat Ltd.,Capital Goods,small
+GRSE,Garden Reach Shipbuilders & Engineers Ltd.,Capital Goods,small
+GICRE,General Insurance Corporation of India,Financial Services,mid
+GILLETTE,Gillette India Ltd.,Fast Moving Consumer Goods,small
+GLAND,Gland Pharma Ltd.,Healthcare,small
+GLAXO,Glaxosmithkline Pharmaceuticals Ltd.,Healthcare,mid
+GLENMARK,Glenmark Pharmaceuticals Ltd.,Healthcare,mid
+MEDANTA,Global Health Ltd.,Healthcare,mid
+GPIL,Godawari Power & Ispat Ltd.,Capital Goods,small
+GODFRYPHLP,Godfrey Phillips India Ltd.,Fast Moving Consumer Goods,mid
+GODREJCP,Godrej Consumer Products Ltd.,Fast Moving Consumer Goods,large
+GODREJIND,Godrej Industries Ltd.,Diversified,mid
+GODREJPROP,Godrej Properties Ltd.,Realty,mid
+GRANULES,Granules India Ltd.,Healthcare,small
+GRAPHITE,Graphite India Ltd.,Capital Goods,small
+GRASIM,Grasim Industries Ltd.,Construction Materials,large
+GRAVITA,Gravita India Ltd.,Metals & Mining,small
+GESHIP,Great Eastern Shipping Co. Ltd.,Services,small
+FLUOROCHEM,Gujarat Fluorochemicals Ltd.,Chemicals,mid
+GMDCLTD,Gujarat Mineral Development Corporation Ltd.,Metals & Mining,small
+HBLENGINE,HBL Engineering Ltd.,Capital Goods,small
+HCLTECH,HCL Technologies Ltd.,Information Technology,large
+HDBFS,HDB Financial Services Ltd.,Financial Services,mid
+HDFCAMC,HDFC Asset Management Company Ltd.,Financial Services,large
+HDFCBANK,HDFC Bank Ltd.,Financial Services,large
+HDFCLIFE,HDFC Life Insurance Company Ltd.,Financial Services,large
+HEGAM,HEG Advanced Materials Ltd.,Capital Goods,small
+HFCL,HFCL Ltd.,Telecommunication,small
+HAVELLS,Havells India Ltd.,Consumer Durables,mid
+HEROMOTOCO,Hero MotoCorp Ltd.,Automobile and Auto Components,mid
+HEXT,Hexaware Technologies Ltd.,Information Technology,mid
+HSCL,Himadri Speciality Chemical Ltd.,Chemicals,small
+HINDALCO,Hindalco Industries Ltd.,Metals & Mining,large
+HAL,Hindustan Aeronautics Ltd.,Capital Goods,large
+HINDCOPPER,Hindustan Copper Ltd.,Metals & Mining,mid
+HINDPETRO,Hindustan Petroleum Corporation Ltd.,Oil Gas & Consumable Fuels,mid
+HINDUNILVR,Hindustan Unilever Ltd.,Fast Moving Consumer Goods,large
+HINDZINC,Hindustan Zinc Ltd.,Metals & Mining,large
+POWERINDIA,Hitachi Energy India Ltd.,Capital Goods,large
+HOMEFIRST,Home First Finance Company India Ltd.,Financial Services,small
+HONASA,Honasa Consumer Ltd.,Fast Moving Consumer Goods,small
+HONAUT,Honeywell Automation India Ltd.,Capital Goods,small
+HUDCO,Housing & Urban Development Corporation Ltd.,Financial Services,mid
+HYUNDAI,Hyundai Motor India Ltd.,Automobile and Auto Components,large
+ICICIBANK,ICICI Bank Ltd.,Financial Services,large
+ICICILIFE,ICICI Life Insurance Ltd.,Financial Services,mid
+ICICIGI,ICICI Lombard General Insurance Company Ltd.,Financial Services,mid
+ICICIAMC,ICICI Prudential Asset Management Company Ltd.,Financial Services,mid
+IDBI,IDBI Bank Ltd.,Financial Services,small
+IDFCFIRSTB,IDFC First Bank Ltd.,Financial Services,mid
+IFCI,IFCI Ltd.,Financial Services,small
+IIFL,IIFL Finance Ltd.,Financial Services,small
+INOXINDIA,INOX India Ltd.,Capital Goods,small
+IRB,IRB Infrastructure Developers Ltd.,Construction,small
+IRCON,IRCON International Ltd.,Construction,small
+ITCHOTELS,ITC Hotels Ltd.,Consumer Services,mid
+ITC,ITC Ltd.,Fast Moving Consumer Goods,large
+ITI,ITI Ltd.,Telecommunication,small
+INDIACEM,India Cements Ltd.,Construction Materials,small
+INDIAMART,Indiamart Intermesh Ltd.,Consumer Services,small
+INDIANB,Indian Bank,Financial Services,mid
+IEX,Indian Energy Exchange Ltd.,Financial Services,small
+INDHOTEL,Indian Hotels Co. Ltd.,Consumer Services,mid
+IOC,Indian Oil Corporation Ltd.,Oil Gas & Consumable Fuels,large
+IOB,Indian Overseas Bank,Financial Services,mid
+IRCTC,Indian Railway Catering And Tourism Corporation Ltd.,Consumer Services,mid
+IRFC,Indian Railway Finance Corporation Ltd.,Financial Services,large
+IREDA,Indian Renewable Energy Development Agency Ltd.,Financial Services,mid
+IGL,Indraprastha Gas Ltd.,Oil Gas & Consumable Fuels,small
+INDUSTOWER,Indus Towers Ltd.,Telecommunication,mid
+INDUSINDBK,IndusInd Bank Ltd.,Financial Services,mid
+NAUKRI,Info Edge (India) Ltd.,Consumer Services,mid
+INFY,Infosys Ltd.,Information Technology,large
+INOXWIND,Inox Wind Ltd.,Capital Goods,small
+INTELLECT,Intellect Design Arena Ltd.,Information Technology,small
+INDIGO,InterGlobe Aviation Ltd.,Services,large
+IGIL,International Gemological Institute Ltd.,Services,small
+IKS,Inventurus Knowledge Solutions Ltd.,Information Technology,small
+IPCALAB,Ipca Laboratories Ltd.,Healthcare,mid
+JKCEMENT,J.K. Cement Ltd.,Construction Materials,mid
+JBMA,JBM Auto Ltd.,Automobile and Auto Components,small
+JKTYRE,JK Tyre & Industries Ltd.,Automobile and Auto Components,small
+JMFINANCIL,JM Financial Ltd.,Financial Services,small
+JSWCEMENT,JSW Cement Ltd.,Construction Materials,small
+JSWENERGY,JSW Energy Ltd.,Power,mid
+JSWINFRA,JSW Infrastructure Ltd.,Services,mid
+JSWSTEEL,JSW Steel Ltd.,Metals & Mining,large
+JAINREC,Jain Resource Recycling Ltd.,Metals & Mining,small
+JPPOWER,Jaiprakash Power Ventures Ltd.,Power,small
+J&KBANK,Jammu & Kashmir Bank Ltd.,Financial Services,small
+JINDALSAW,Jindal Saw Ltd.,Capital Goods,small
+JSL,Jindal Stainless Ltd.,Metals & Mining,mid
+JINDALSTEL,Jindal Steel Ltd.,Metals & Mining,large
+JIOFIN,Jio Financial Services Ltd.,Financial Services,large
+JUBLFOOD,Jubilant Foodworks Ltd.,Consumer Services,mid
+JUBLINGREA,Jubilant Ingrevia Ltd.,Chemicals,small
+JWL,Jupiter Wagons Ltd.,Capital Goods,small
+JYOTICNC,Jyoti CNC Automation Ltd.,Capital Goods,small
+KPRMILL,K.P.R. Mill Ltd.,Textiles,mid
+KEI,KEI Industries Ltd.,Capital Goods,mid
+KPITTECH,KPIT Technologies Ltd.,Information Technology,small
+KSB,KSB Ltd.,Capital Goods,small
+KAJARIACER,Kajaria Ceramics Ltd.,Consumer Durables,small
+KPIL,Kalpataru Projects International Ltd.,Construction,small
+KALYANKJIL,Kalyan Jewellers India Ltd.,Consumer Durables,mid
+KARURVYSYA,Karur Vysya Bank Ltd.,Financial Services,small
+KAYNES,Kaynes Technology India Ltd.,Capital Goods,small
+KEC,Kec International Ltd.,Construction,small
+KFINTECH,Kfin Technologies Ltd.,Financial Services,small
+KIRLOSBROS,Kirloskar Brothers Ltd.,Capital Goods,small
+KIRLOSENG,Kirloskar Oil Eng Ltd.,Capital Goods,small
+KOTAKBANK,Kotak Mahindra Bank Ltd.,Financial Services,large
+KIMS,Krishna Institute of Medical Sciences Ltd.,Healthcare,small
+LTF,L&T Finance Ltd.,Financial Services,mid
+LTTS,L&T Technology Services Ltd.,Information Technology,mid
+LGEINDIA,LG Electronics India Ltd.,Consumer Durables,mid
+LICHSGFIN,LIC Housing Finance Ltd.,Financial Services,mid
+LTFOODS,LT Foods Ltd.,Fast Moving Consumer Goods,small
+LTM,LTM Ltd.,Information Technology,large
+LT,Larsen & Toubro Ltd.,Construction,large
+LAURUSLABS,Laurus Labs Ltd.,Healthcare,mid
+LEMONTREE,Lemon Tree Hotels Ltd.,Consumer Services,small
+LENSKART,Lenskart Solutions Ltd.,Consumer Services,mid
+LICI,Life Insurance Corporation of India,Financial Services,mid
+LINDEINDIA,Linde India Ltd.,Chemicals,mid
+LLOYDSME,Lloyds Metals And Energy Ltd.,Metals & Mining,mid
+LODHA,Lodha Developers Ltd.,Realty,mid
+LUPIN,Lupin Ltd.,Healthcare,mid
+MMTC,MMTC Ltd.,Services,small
+MRF,MRF Ltd.,Automobile and Auto Components,mid
+MTARTECH,MTAR Technologies Ltd.,Capital Goods,small
+MGL,Mahanagar Gas Ltd.,Oil Gas & Consumable Fuels,small
+M&MFIN,Mahindra & Mahindra Financial Services Ltd.,Financial Services,mid
+M&M,Mahindra & Mahindra Ltd.,Automobile and Auto Components,large
+MANAPPURAM,Manappuram Finance Ltd.,Financial Services,small
+MRPL,Mangalore Refinery & Petrochemicals Ltd.,Oil Gas & Consumable Fuels,small
+MANKIND,Mankind Pharma Ltd.,Healthcare,mid
+MARICO,Marico Ltd.,Fast Moving Consumer Goods,mid
+MARUTI,Maruti Suzuki India Ltd.,Automobile and Auto Components,large
+MFSL,Max Financial Services Ltd.,Financial Services,mid
+MAXHEALTH,Max Healthcare Institute Ltd.,Healthcare,large
+MAZDOCK,Mazagoan Dock Shipbuilders Ltd.,Capital Goods,large
+MEESHO,Meesho Ltd.,Consumer Services,mid
+MINDACORP,Minda Corporation Ltd.,Automobile and Auto Components,small
+MSUMI,Motherson Sumi Wiring India Ltd.,Automobile and Auto Components,small
+MOTILALOFS,Motilal Oswal Financial Services Ltd.,Financial Services,mid
+MPHASIS,MphasiS Ltd.,Information Technology,mid
+MCX,Multi Commodity Exchange of India Ltd.,Financial Services,mid
+MUTHOOTFIN,Muthoot Finance Ltd.,Financial Services,large
+NATCOPHARM,NATCO Pharma Ltd.,Healthcare,small
+NBCC,NBCC (India) Ltd.,Construction,small
+NCC,NCC Ltd.,Construction,small
+NHPC,NHPC Ltd.,Power,mid
+NLCINDIA,NLC India Ltd.,Power,mid
+NMDC,NMDC Ltd.,Metals & Mining,mid
+NSLNISP,NMDC Steel Ltd.,Metals & Mining,small
+NTPCGREEN,NTPC Green Energy Ltd.,Power,mid
+NTPC,NTPC Ltd.,Power,large
+NH,Narayana Hrudayalaya Ltd.,Healthcare,mid
+NATIONALUM,National Aluminium Co. Ltd.,Metals & Mining,mid
+NAVA,Nava Ltd.,Power,small
+NAVINFLUOR,Navin Fluorine International Ltd.,Chemicals,small
+NESTLEIND,Nestle India Ltd.,Fast Moving Consumer Goods,large
+NETWEB,Netweb Technologies India Ltd.,Information Technology,small
+NEULANDLAB,Neuland Laboratories Ltd.,Healthcare,small
+NAM-INDIA,Nippon Life India Asset Management Ltd.,Financial Services,mid
+NUVAMA,Nuvama Wealth Management Ltd.,Financial Services,small
+NUVOCO,Nuvoco Vistas Corporation Ltd.,Construction Materials,small
+OBEROIRLTY,Oberoi Realty Ltd.,Realty,mid
+ONGC,Oil & Natural Gas Corporation Ltd.,Oil Gas & Consumable Fuels,large
+OIL,Oil India Ltd.,Oil Gas & Consumable Fuels,mid
+OLAELEC,Ola Electric Mobility Ltd.,Automobile and Auto Components,small
+OLECTRA,Olectra Greentech Ltd.,Automobile and Auto Components,small
+PAYTM,One 97 Communications Ltd.,Financial Services,mid
+ONESOURCE,Onesource Specialty Pharma Ltd.,Healthcare,small
+OFSS,Oracle Financial Services Software Ltd.,Information Technology,mid
+POLICYBZR,PB Fintech Ltd.,Financial Services,mid
+PCBL,PCBL Chemical Ltd.,Chemicals,small
+PGEL,PG Electroplast Ltd.,Consumer Durables,small
+PIIND,PI Industries Ltd.,Chemicals,mid
+PNBHOUSING,PNB Housing Finance Ltd.,Financial Services,small
+PTCIL,PTC Industries Ltd.,Capital Goods,small
+PVRINOX,PVR INOX Ltd.,Media Entertainment & Publication,small
+PAGEIND,Page Industries Ltd.,Textiles,mid
+PARADEEP,Paradeep Phosphates Ltd.,Chemicals,small
+PATANJALI,Patanjali Foods Ltd.,Fast Moving Consumer Goods,mid
+PERSISTENT,Persistent Systems Ltd.,Information Technology,mid
+PETRONET,Petronet LNG Ltd.,Oil Gas & Consumable Fuels,mid
+PHOENIXLTD,Phoenix Mills Ltd.,Realty,mid
+PWL,Physicswallah Ltd.,Consumer Services,small
+PIDILITIND,Pidilite Industries Ltd.,Chemicals,large
+PINELABS,Pine Labs Ltd.,Financial Services,small
+PIRAMALFIN,Piramal Finance Ltd.,Financial Services,mid
+PPLPHARMA,Piramal Pharma Ltd.,Healthcare,small
+POLYMED,Poly Medicure Ltd.,Healthcare,small
+POLYCAB,Polycab India Ltd.,Capital Goods,large
+POONAWALLA,Poonawalla Fincorp Ltd.,Financial Services,small
+PFC,Power Finance Corporation Ltd.,Financial Services,large
+POWERGRID,Power Grid Corporation of India Ltd.,Power,large
+PREMIERENE,Premier Energies Ltd.,Capital Goods,mid
+PRESTIGE,Prestige Estates Projects Ltd.,Realty,mid
+PFOCUS,Prime Focus Ltd.,Media Entertainment & Publication,small
+PRIVISCL,Privi Speciality Chemicals Ltd.,Chemicals,small
+PNB,Punjab National Bank,Financial Services,large
+RRKABEL,R R Kabel Ltd.,Capital Goods,small
+RBLBANK,RBL Bank Ltd.,Financial Services,small
+RECLTD,REC Ltd.,Financial Services,mid
+RHIM,RHI MAGNESITA INDIA LTD.,Capital Goods,small
+RITES,RITES Ltd.,Construction,small
+RADICO,Radico Khaitan Ltd,Fast Moving Consumer Goods,mid
+RVNL,Rail Vikas Nigam Ltd.,Construction,mid
+RAILTEL,Railtel Corporation Of India Ltd.,Telecommunication,small
+RAINBOW,Rainbow Childrens Medicare Ltd.,Healthcare,small
+RKFORGE,Ramkrishna Forgings Ltd.,Automobile and Auto Components,small
+REDINGTON,Redington Ltd.,Services,small
+RELIANCE,Reliance Industries Ltd.,Oil Gas & Consumable Fuels,large
+RPOWER,Reliance Power Ltd.,Power,small
+RUBICON,Rubicon Research Ltd.,Healthcare,small
+SBICARD,SBI Cards and Payment Services Ltd.,Financial Services,mid
+SBILIFE,SBI Life Insurance Company Ltd.,Financial Services,large
+SJVN,SJVN Ltd.,Power,small
+SHRIPISTON,SPR Auto Technologies Ltd.,Automobile and Auto Components,small
+SRF,SRF Ltd.,Chemicals,mid
+SAGILITY,Sagility Ltd.,Information Technology,small
+SAILIFE,Sai Life Sciences Ltd.,Healthcare,small
+SAMMAANCAP,Sammaan Capital Ltd.,Financial Services,small
+MOTHERSON,Samvardhana Motherson International Ltd.,Automobile and Auto Components,large
+SANSERA,Sansera Engineering Ltd.,Automobile and Auto Components,small
+SARDAEN,Sarda Energy and Minerals Ltd.,Metals & Mining,small
+SCHAEFFLER,Schaeffler India Ltd.,Automobile and Auto Components,mid
+SCHNEIDER,Schneider Electric Infrastructure Ltd.,Capital Goods,small
+SCI,Shipping Corporation of India Ltd.,Services,small
+SHREECEM,Shree Cement Ltd.,Construction Materials,mid
+SHRIRAMFIN,Shriram Finance Ltd.,Financial Services,large
+SHYAMMETL,Shyam Metalics and Energy Ltd.,Capital Goods,small
+ENRIN,Siemens Energy India Ltd.,Capital Goods,large
+SIEMENS,Siemens Ltd.,Capital Goods,large
+SIGNATURE,Signatureglobal (India) Ltd.,Realty,small
+SOBHA,Sobha Ltd.,Realty,small
+SOLARINDS,Solar Industries India Ltd.,Chemicals,large
+SONACOMS,Sona BLW Precision Forgings Ltd.,Automobile and Auto Components,small
+STARHEALTH,Star Health and Allied Insurance Company Ltd.,Financial Services,small
+SBIN,State Bank of India,Financial Services,large
+SAIL,Steel Authority of India Ltd.,Metals & Mining,mid
+STLTECH,Sterlite Technologies Ltd.,Telecommunication,small
+SUMICHEM,Sumitomo Chemical India Ltd.,Chemicals,small
+SUNPHARMA,Sun Pharmaceutical Industries Ltd.,Healthcare,large
+SUNTV,Sun TV Network Ltd.,Media Entertainment & Publication,small
+SUNDARMFIN,Sundaram Finance Ltd.,Financial Services,mid
+SUPREMEIND,Supreme Industries Ltd.,Capital Goods,mid
+SUZLON,Suzlon Energy Ltd.,Capital Goods,mid
+SWANCORP,Swan Corp Ltd.,Chemicals,small
+SWIGGY,Swiggy Ltd.,Consumer Services,mid
+SYNGENE,Syngene International Ltd.,Healthcare,small
+SYRMA,Syrma SGS Technology Ltd.,Capital Goods,small
+TBOTEK,TBO Tek Ltd.,Consumer Services,small
+TDPOWERSYS,TD Power Systems Ltd.,Capital Goods,small
+TVSMOTOR,TVS Motor Company Ltd.,Automobile and Auto Components,large
+TATACAP,Tata Capital Ltd.,Financial Services,large
+TATACHEM,Tata Chemicals Ltd.,Chemicals,small
+TATACOMM,Tata Communications Ltd.,Telecommunication,mid
+TCS,Tata Consultancy Services Ltd.,Information Technology,large
+TATACONSUM,Tata Consumer Products Ltd.,Fast Moving Consumer Goods,large
+TATAELXSI,Tata Elxsi Ltd.,Information Technology,small
+TATAINVEST,Tata Investment Corporation Ltd.,Financial Services,mid
+TMCV,Tata Motors Ltd.,Capital Goods,large
+TMPV,Tata Motors Passenger Vehicles Ltd.,Automobile and Auto Components,large
+TATAPOWER,Tata Power Co. Ltd.,Power,large
+TATASTEEL,Tata Steel Ltd.,Metals & Mining,large
+TATATECH,Tata Technologies Ltd.,Information Technology,small
+TTML,Tata Teleservices (Maharashtra) Ltd.,Telecommunication,small
+TECHM,Tech Mahindra Ltd.,Information Technology,large
+TECHNOE,Techno Electric & Engineering Company Ltd.,Construction,small
+TEGA,Tega Industries Ltd.,Capital Goods,small
+TEJASNET,Tejas Networks Ltd.,Telecommunication,small
+TENNIND,Tenneco Clean Air India Ltd.,Automobile and Auto Components,small
+THANGAMAYL,Thangamayil Jewellery Ltd.,Consumer Durables,small
+NIACL,The New India Assurance Company Ltd.,Financial Services,small
+RAMCOCEM,The Ramco Cements Ltd.,Construction Materials,small
+THERMAX,Thermax Ltd.,Capital Goods,mid
+TIMKEN,Timken India Ltd.,Capital Goods,small
+TITAGARH,Titagarh Rail Systems Ltd.,Capital Goods,small
+TITAN,Titan Company Ltd.,Consumer Durables,large
+TORNTPHARM,Torrent Pharmaceuticals Ltd.,Healthcare,large
+TORNTPOWER,Torrent Power Ltd.,Power,mid
+TARIL,Transformers And Rectifiers (India) Ltd.,Capital Goods,small
+TRENT,Trent Ltd.,Consumer Services,large
+TRIDENT,Trident Ltd.,Textiles,small
+TRITURBINE,Triveni Turbine Ltd.,Capital Goods,small
+TIINDIA,Tube Investments of India Ltd.,Automobile and Auto Components,mid
+UCOBANK,UCO Bank,Financial Services,small
+UNOMINDA,UNO Minda Ltd.,Automobile and Auto Components,mid
+UPL,UPL Ltd.,Chemicals,mid
+UTIAMC,UTI Asset Management Company Ltd.,Financial Services,small
+ULTRACEMCO,UltraTech Cement Ltd.,Construction Materials,large
+UNIONBANK,Union Bank of India,Financial Services,large
+UBL,United Breweries Ltd.,Fast Moving Consumer Goods,mid
+UNITDSPR,United Spirits Ltd.,Fast Moving Consumer Goods,mid
+URBANCO,Urban Company Ltd.,Consumer Services,small
+USHAMART,Usha Martin Ltd.,Capital Goods,small
+VTL,Vardhman Textiles Ltd.,Textiles,small
+VBL,Varun Beverages Ltd.,Fast Moving Consumer Goods,large
+VAML,Vedanta Aluminium Metal Ltd.,Metals & Mining,large
+VISL,Vedanta Iron and Steel Ltd.,Metals & Mining,small
+VEDL,Vedanta Ltd.,Metals & Mining,large
+VOGL,Vedanta Oil and Gas Ltd.,Oil Gas & Consumable Fuels,small
+VEDPOWER,Vedanta Power Ltd.,Power,small
+VIJAYA,Vijaya Diagnostic Centre Ltd.,Healthcare,small
+VMM,Vishal Mega Mart Ltd.,Consumer Services,mid
+IDEA,Vodafone Idea Ltd.,Telecommunication,large
+VOLTAS,Voltas Ltd.,Consumer Durables,mid
+WAAREEENER,Waaree Energies Ltd.,Capital Goods,mid
+WELCORP,Welspun Corp Ltd.,Capital Goods,small
+WELSPUNLIV,Welspun Living Ltd.,Textiles,small
+WHIRLPOOL,Whirlpool of India Ltd.,Consumer Durables,small
+WIPRO,Wipro Ltd.,Information Technology,large
+WOCKPHARMA,Wockhardt Ltd.,Healthcare,small
+YESBANK,Yes Bank Ltd.,Financial Services,mid
+ZFCVINDIA,ZF Commercial Vehicle Control Systems India Ltd.,Automobile and Auto Components,small
+ZEEL,Zee Entertainment Enterprises Ltd.,Media Entertainment & Publication,small
+ZENTEC,Zen Technologies Ltd.,Capital Goods,small
+ZENSARTECH,Zensar Technolgies Ltd.,Information Technology,small
+ZYDUSLIFE,Zydus Lifesciences Ltd.,Healthcare,large
+ZYDUSWELL,Zydus Wellness Ltd.,Fast Moving Consumer Goods,small
+ECLERX,eClerx Services Ltd.,Services,small
+AXISCADES,AXISCADES Technologies Ltd.,Capital Goods,micro
+AARTIPHARM,Aarti Pharmalabs Ltd.,Healthcare,micro
+ABFRL,Aditya Birla Fashion and Retail Ltd.,Consumer Services,micro
+ABLBL,Aditya Birla Lifestyle Brands Ltd.,Consumer Services,micro
+AVL,Aditya Vision Ltd.,Consumer Services,micro
+ADVENZYMES,Advanced Enzyme Tech Ltd.,Healthcare,micro
+AEQUS,Aequs Ltd.,Capital Goods,micro
+AEROFLEX,Aeroflex Industries Ltd.,Capital Goods,micro
+AKUMS,Akums Drugs and Pharmaceuticals Ltd.,Healthcare,micro
+ALKYLAMINE,Alkyl Amines Chemicals Ltd.,Chemicals,micro
+AMAGI,Amagi Media Labs Ltd.,Information Technology,micro
+APOLLO,Apollo Micro Systems Ltd.,Capital Goods,micro
+ACI,Archean Chemical Industries Ltd.,Chemicals,micro
+ARVINDFASN,Arvind Fashions Ltd.,Consumer Services,micro
+ARVIND,Arvind Ltd.,Textiles,micro
+ASHAPURMIN,Ashapura Minechem Ltd.,Metals & Mining,micro
+ASHOKA,Ashoka Buildcon Ltd.,Construction,micro
+ASTRAMICRO,Astra Microwave Products Ltd.,Capital Goods,micro
+ATLANTAELE,Atlanta Electricals Ltd.,Capital Goods,micro
+AURIONPRO,Aurionpro Solution Ltd.,Information Technology,micro
+AVALON,Avalon Technologies Ltd.,Capital Goods,micro
+BAJAJCON,Bajaj Consumer Care Ltd.,Fast Moving Consumer Goods,micro
+BALAMINES,Balaji Amines Ltd.,Chemicals,micro
+BALUFORGE,Balu Forge Industries Ltd.,Capital Goods,micro
+BANCOINDIA,Banco Products (India) Ltd.,Automobile and Auto Components,micro
+BIRLACORPN,Birla Corporation Ltd.,Construction Materials,micro
+BLACKBUCK,Blackbuck Ltd.,Services,micro
+BLUEJET,Blue Jet Healthcare Ltd.,Healthcare,micro
+BLUESTONE,BlueStone Jewellery and Lifestyle Ltd.,Consumer Durables,micro
+BORORENEW,Borosil Renewables Ltd.,Capital Goods,micro
+MAPMYINDIA,C.E. Info Systems Ltd.,Information Technology,micro
+CMRGREEN,CMR Green Technologies Ltd.,Capital Goods,micro
+CMSINFO,CMS Info Systems Ltd.,Services,micro
+CSBBANK,CSB Bank Ltd.,Financial Services,micro
+CAMPUS,Campus Activewear Ltd.,Consumer Durables,micro
+CRAMC,Canara Robeco Asset Management Company Ltd.,Financial Services,micro
+CAPILLARY,Capillary Technologies India Ltd.,Information Technology,micro
+CEIGALL,Ceigall India Ltd.,Construction,micro
+CELLO,Cello World Ltd.,Consumer Durables,micro
+CENTUM,Centum Electronics Ltd.,Capital Goods,micro
+CERA,Cera Sanitaryware Ltd,Consumer Durables,micro
+CHALET,Chalet Hotels Ltd.,Consumer Services,micro
+DCBBANK,DCB Bank Ltd.,Financial Services,micro
+DATAMATICS,Datamatics Global Services Ltd.,Information Technology,micro
+DIACABS,Diamond Power Infrastructure Ltd.,Capital Goods,micro
+DBL,Dilip Buildcon Ltd.,Construction,micro
+DUMMYINGL1,Dummy India Glycols ltd. 1,Healthcare,micro
+DUMMYINGL2,Dummy India Glycols ltd. 2,Fast Moving Consumer Goods,micro
+DUMMYINXGN,Dummy Inox Green Ltd.,Construction,micro
+DYNAMATECH,Dynamatic Technologies Ltd.,Capital Goods,micro
+E2E,E2E NETWORKS Ltd.,Information Technology,micro
+EPL,EPL Ltd.,Capital Goods,micro
+EDELWEISS,Edelweiss Financial Services Ltd.,Financial Services,micro
+EMIL,Electronics Mart India Ltd.,Consumer Services,micro
+ELECTCAST,Electrosteel Castings Ltd.,Capital Goods,micro
+ELLEN,Ellenbarrie Industrial Gases Ltd.,Chemicals,micro
+EMBDL,Embassy Developments Ltd.,Realty,micro
+ENTERO,Entero Healthcare Solutions Ltd.,Consumer Services,micro
+EIEL,Enviro Infra Engineers Ltd.,Utilities,micro
+EQUITASBNK,Equitas Small Finance Bank Ltd.,Financial Services,micro
+ERIS,Eris Lifesciences Ltd.,Healthcare,micro
+FEDFINA,Fedbank Financial Services Ltd.,Financial Services,micro
+FIEMIND,Fiem Industries Ltd,Automobile and Auto Components,micro
+FINPIPE,Finolex Industries Ltd.,Capital Goods,micro
+UTLSOLAR,Fujiyama Power Systems Ltd.,Capital Goods,micro
+GMRP&UI,GMR Power and Urban Infra Ltd.,Power,micro
+EBGNG,GNG Electronics Ltd.,Information Technology,micro
+GRWRHITECH,Garware Hi-Tech Films Ltd.,Capital Goods,micro
+GENUSPOWER,Genus Power Infrastructures Ltd.,Capital Goods,micro
+GODREJAGRO,Godrej Agrovet Ltd.,Fast Moving Consumer Goods,micro
+GOKEX,Gokaldas Exports Ltd.,Textiles,micro
+GOKULAGRO,Gokul Agro Resources Ltd.,Fast Moving Consumer Goods,micro
+GOLDIAM,Goldiam International Ltd.,Consumer Durables,micro
+GREAVESCOT,Greaves Cotton Ltd.,Capital Goods,micro
+GRINDWELL,Grindwell Norton Ltd.,Capital Goods,micro
+GUJALKALI,Gujarat Alkalies & Chemicals Ltd.,Chemicals,micro
+GAEL,Gujarat Ambuja Exports Ltd.,Fast Moving Consumer Goods,micro
+GNFC,Gujarat Narmada Valley Fertilizers and Chemicals Ltd.,Chemicals,micro
+GPPL,Gujarat Pipavav Port Ltd.,Services,micro
+GSFC,Gujarat State Fertilizers & Chemicals Ltd.,Chemicals,micro
+HGINFRA,H.G. Infra Engineering Ltd.,Construction,micro
+HAPPSTMNDS,Happiest Minds Technologies Ltd.,Information Technology,micro
+HAPPYFORGE,Happy Forgings Ltd.,Capital Goods,micro
+HCG,Healthcare Global Enterprises Ltd.,Healthcare,micro
+HERITGFOOD,Heritage Foods Ltd.,Fast Moving Consumer Goods,micro
+HCC,Hindustan Construction Co. Ltd.,Construction,micro
+IFBIND,IFB Industries Ltd.,Consumer Durables,micro
+IIFLCAPS,IIFL Capital Services Ltd.,Financial Services,micro
+INDGN,Indegene Ltd.,Healthcare,micro
+INDIAGLYCO,India Glycols Ltd.,Fast Moving Consumer Goods,micro
+IMFA,Indian Metals & Ferro Alloys Ltd.,Metals & Mining,micro
+INDIGOPNTS,Indigo Paints Ltd.,Consumer Durables,micro
+ICIL,Indo Count Industries Ltd.,Textiles,micro
+IONEXCHANG,Ion Exchange (India) Ltd.,Utilities,micro
+JAIBALAJI,JAI BALAJI INDUSTRIES Ltd.,Metals & Mining,micro
+JKPAPER,JK Paper Ltd.,Forest Materials,micro
+JAMNAAUTO,Jamna Auto Industries Ltd.,Automobile and Auto Components,micro
+JSFB,Jana Small Finance Bank Ltd.,Financial Services,micro
+JAYNECOIND,Jayaswal Neco Industries Ltd.,Capital Goods,micro
+JSLL,Jeena Sikho Lifecare Ltd.,Consumer Services,micro
+JUBLPHARMA,Jubilant Pharmova Ltd.,Healthcare,micro
+JUSTDIAL,Justdial Ltd.,Consumer Services,micro
+JYOTHYLAB,Jyothy Labs Ltd.,Fast Moving Consumer Goods,micro
+KNRCON,KNR Constructions Ltd.,Construction,micro
+KPIGREEN,KPI Green Energy Ltd.,Power,micro
+KRBL,KRBL Ltd.,Fast Moving Consumer Goods,micro
+KRN,KRN HEAT EXCHANGER AND REFRIGERATION Ltd.,Capital Goods,micro
+KANSAINER,Kansai Nerolac Paints Ltd.,Consumer Durables,micro
+KTKBANK,Karnataka Bank Ltd.,Financial Services,micro
+KSCL,Kaveri Seed Company Ltd.,Fast Moving Consumer Goods,micro
+KIRLPNU,Kirloskar Pneumatic Company Ltd.,Capital Goods,micro
+KITEX,Kitex Garments Ltd.,Textiles,micro
+KMEW,Knowledge Marine & Engineering Works Ltd.,Services,micro
+KWIL,Kwality Wall's (India) Ltd.,Fast Moving Consumer Goods,micro
+LATENTVIEW,Latent View Analytics Ltd.,Information Technology,micro
+LXCHEM,Laxmi Organic Industries Ltd.,Chemicals,micro
+IXIGO,Le Travenues Technology Ltd.,Consumer Services,micro
+THELEELA,Leela Palaces Hotels & Resorts Ltd.,Consumer Services,micro
+LLOYDSENGG,Lloyds Engineering Works Ltd.,Capital Goods,micro
+LLOYDSENT,Lloyds Enterprises Ltd.,Metals & Mining,micro
+LUMAXTECH,Lumax Auto Technologies Ltd.,Automobile and Auto Components,micro
+LUMAXIND,Lumax Industries Ltd.,Automobile and Auto Components,micro
+MOIL,MOIL Ltd.,Metals & Mining,micro
+MSTCLTD,MSTC Ltd.,Services,micro
+MBAPL,Madhya Bharat Agro Products Ltd.,Chemicals,micro
+MANORAMA,Manorama Industries Ltd.,Fast Moving Consumer Goods,micro
+MARKSANS,Marksans Pharma Ltd.,Healthcare,micro
+MASTEK,Mastek Ltd.,Information Technology,micro
+MEDPLUS,Medplus Health Services Ltd.,Consumer Services,micro
+METROPOLIS,Metropolis Healthcare Ltd.,Healthcare,micro
+MIDHANI,Mishra Dhatu Nigam Ltd.,Capital Goods,micro
+BECTORFOOD,Mrs. Bectors Food Specialities Ltd.,Fast Moving Consumer Goods,micro
+NEOGEN,NEOGEN CHEMICALS LTD.,Chemicals,micro
+NFL,National Fertilizers Ltd.,Chemicals,micro
+NAZARA,Nazara Technologies Ltd.,Media Entertainment & Publication,micro
+NEPHROPLUS,Nephrocare Health Services Ltd.,Healthcare,micro
+NETWORK18,Network18 Media & Investments Ltd.,Media Entertainment & Publication,micro
+NEWGEN,Newgen Software Technologies Ltd.,Information Technology,micro
+NIVABUPA,Niva Bupa Health Insurance Company Ltd.,Financial Services,micro
+NORTHARC,Northern Arc Capital Ltd.,Financial Services,micro
+OMNI,Omnitech Engineering Ltd.,Capital Goods,micro
+KISSHT,OnEMI Technology Solutions Ltd.,Financial Services,micro
+OSWALPUMPS,Oswal Pumps Ltd.,Capital Goods,micro
+PNGJL,P N Gadgil Jewellers Ltd.,Consumer Durables,micro
+PCJEWELLER,PC Jeweller Ltd.,Consumer Durables,micro
+PDSL,PDS Ltd.,Textiles,micro
+PNCINFRA,PNC Infratech Ltd.,Construction,micro
+PTC,PTC India Ltd.,Power,micro
+PAISALO,Paisalo Digital Ltd.,Financial Services,micro
+PARAS,Paras Defence and Space Technologies Ltd.,Capital Goods,micro
+PARKHOSPS,Park Medi World Ltd.,Healthcare,micro
+PGIL,Pearl Global Industries Ltd.,Textiles,micro
+PFIZER,Pfizer Ltd.,Healthcare,micro
+PICCADIL,Piccadily Agro Industries Ltd.,Fast Moving Consumer Goods,micro
+POWERMECH,Power Mech Projects Ltd.,Construction,micro
+POWERICA,Powerica Ltd.,Capital Goods,micro
+PRAJIND,Praj Industries Ltd.,Capital Goods,micro
+PRECWIRE,Precision Wires India Ltd.,Capital Goods,micro
+PRICOLLTD,Pricol Ltd.,Automobile and Auto Components,micro
+PGHL,Procter & Gamble Health Ltd.,Healthcare,micro
+PURVA,Puravankara Ltd.,Realty,micro
+QPOWER,QUALITY POWER ELECTRICAL EQUIPMENTS Ltd.,Capital Goods,micro
+QUESS,Quess Corp Ltd.,Services,micro
+RAIN,Rain Industries Ltd,Chemicals,micro
+RALLIS,Rallis India Ltd.,Chemicals,micro
+RCF,Rashtriya Chemicals & Fertilizers Ltd.,Chemicals,micro
+RATEGAIN,Rategain Travel Technologies Ltd.,Information Technology,micro
+RATNAMANI,Ratnamani Metals & Tubes Ltd.,Capital Goods,micro
+RTNPOWER,RattanIndia Power Ltd.,Power,micro
+RAYMONDLSL,Raymond Lifestyle Ltd.,Textiles,micro
+REFEX,Refex Industries Ltd.,Utilities,micro
+RELAXO,Relaxo Footwears Ltd.,Consumer Durables,micro
+RELIGARE,Religare Enterprises Ltd.,Financial Services,micro
+RESPONIND,Responsive Industries Ltd.,Consumer Durables,micro
+RBA,Restaurant Brands Asia Ltd.,Consumer Services,micro
+ROUTE,Route Mobile Ltd.,Telecommunication,micro
+SJS,S.J.S. Enterprises Ltd.,Automobile and Auto Components,micro
+SBFC,SBFC Finance Ltd.,Financial Services,micro
+SEDEMAC,SEDEMAC Mechatronics Ltd.,Automobile and Auto Components,micro
+SGMART,SG Mart Ltd.,Metals & Mining,micro
+SIGMAADV,SIGMA ADVANCED SYSTEMS LTD.,Capital Goods,micro
+SKYGOLD,SKY GOLD AND DIAMONDS Ltd.,Consumer Durables,micro
+SMLMAH,SML Mahindra Ltd.,Capital Goods,micro
+LOTUSDEV,SRI LOTUS DEVELOPERS AND REALTY Ltd.,Realty,micro
+SAFARI,Safari Industries (India) Ltd.,Consumer Durables,micro
+SAMHI,Samhi Hotels Ltd.,Consumer Services,micro
+SANDUMA,Sandur Manganese & Iron Ores Ltd.,Metals & Mining,micro
+SAPPHIRE,Sapphire Foods India Ltd.,Consumer Services,micro
+SAREGAMA,Saregama India Ltd,Media Entertainment & Publication,micro
+SENCO,Senco Gold Ltd.,Consumer Durables,micro
+SENORES,Senores Pharmaceuticals Ltd.,Healthcare,micro
+SHADOWFAX,Shadowfax Technologies Ltd.,Services,micro
+SHAILY,Shaily Engineering Plastics Ltd.,Consumer Durables,micro
+SHAKTIPUMP,Shakti Pumps (India) Ltd.,Capital Goods,micro
+SHARDACROP,Sharda Cropchem Ltd.,Chemicals,micro
+SHAREINDIA,Share India Securities Ltd.,Financial Services,micro
+SFL,Sheela Foam Ltd.,Consumer Durables,micro
+SHILCTECH,Shilchar Technologies Ltd.,Capital Goods,micro
+SHILPAMED,Shilpa Medicare Ltd.,Healthcare,micro
+RENUKA,Shree Renuka Sugars Ltd.,Fast Moving Consumer Goods,micro
+SHREEJISPG,Shreeji Shipping Global Ltd.,Services,micro
+SKIPPER,Skipper Ltd.,Capital Goods,micro
+SONATSOFTW,Sonata Software Ltd.,Information Technology,micro
+SOUTHBANK,South Indian Bank Ltd.,Financial Services,micro
+SWSOLAR,Sterling and Wilson Renewable Energy Ltd.,Construction,micro
+STAR,Strides Pharma Science Ltd.,Healthcare,micro
+STYLAMIND,Stylam Industries Ltd.,Consumer Durables,micro
+SUBROS,Subros Ltd.,Capital Goods,micro
+SUDARSCHEM,Sudarshan Chemical Industries Ltd.,Chemicals,micro
+SUDEEPPHRM,Sudeep Pharma Ltd.,Chemicals,micro
+SPARC,Sun Pharma Advanced Research Company Ltd.,Healthcare,micro
+SUNDRMFAST,Sundram Fasteners Ltd.,Automobile and Auto Components,micro
+SUNFLAG,Sunflag Iron & Steel Company Ltd.,Capital Goods,micro
+SUNTECK,Sunteck Realty Ltd.,Realty,micro
+SPLPETRO,Supreme Petrochem Ltd.,Chemicals,micro
+SUPRIYA,Supriya Lifescience Ltd.,Healthcare,micro
+SURYAROSNI,Surya Roshni Ltd.,Capital Goods,micro
+SUVEN,Suven Life Sciences Ltd.,Healthcare,micro
+TARC,TARC Ltd.,Realty,micro
+TTKPRESTIG,TTK Prestige Ltd.,Consumer Durables,micro
+TVSSCS,TVS Supply Chain Solutions Ltd.,Services,micro
+TMB,Tamilnad Mercantile Bank Ltd.,Financial Services,micro
+TANLA,Tanla Platforms Ltd.,Information Technology,micro
+TEXRAIL,Texmaco Rail & Eng. Ltd.,Capital Goods,micro
+THOMASCOOK,Thomas Cook (India) Ltd.,Consumer Services,micro
+THYROCARE,Thyrocare Technologies Ltd.,Healthcare,micro
+TI,Tilaknagar Industries Ltd.,Fast Moving Consumer Goods,micro
+TIMETECHNO,Time Technoplast Ltd.,Capital Goods,micro
+TIMEX,Timex Group India Ltd.,Consumer Durables,micro
+TIPSMUSIC,Tips Music Ltd.,Media Entertainment & Publication,micro
+TRANSRAILL,Transrail Lighting Ltd.,Capital Goods,micro
+TRIVENIPT,Triveni Power Transmission Ltd.,Capital Goods,micro
+UJJIVANSFB,Ujjivan Small Finance Bank Ltd.,Financial Services,micro
+UNIMECH,Unimech Aerospace and Manufacturing Ltd.,Capital Goods,micro
+VGUARD,V-Guard Industries Ltd.,Consumer Durables,micro
+VMART,V-Mart Retail Ltd.,Consumer Services,micro
+VIPIND,V.I.P. Industries Ltd.,Consumer Durables,micro
+V2RETAIL,V2 Retail Ltd.,Consumer Services,micro
+DBREALTY,VALOR ESTATE Ltd.,Realty,micro
+WABAG,Va Tech Wabag Ltd.,Utilities,micro
+VAIBHAVGBL,Vaibhav Global Ltd.,Consumer Durables,micro
+MANYAVAR,Vedant Fashions Ltd.,Consumer Services,micro
+VESUVIUS,Vesuvius India Ltd.,Capital Goods,micro
+VIKRAMSOLR,Vikram Solar Ltd.,Capital Goods,micro
+VIYASH,Viyash Scientific Ltd.,Healthcare,micro
+VOLTAMP,Voltamp Transformers Ltd,Capital Goods,micro
+WAAREERTL,Waaree Renewable Technologies Ltd.,Capital Goods,micro
+WAKEFIT,Wakefit Innovations Ltd.,Consumer Durables,micro
+WEWORK,WeWork India Management Ltd.,Services,micro
+WEBELSOLAR,Websol Energy System Ltd.,Capital Goods,micro
+WELENT,Welspun Enterprises Ltd.,Construction,micro
+WESTLIFE,Westlife Foodworld Ltd.,Consumer Services,micro
+YATHARTH,Yatharth Hospital & Trauma Care Services Ltd.,Healthcare,micro
+ZAGGLE,Zaggle Prepaid Ocean Services Ltd.,Information Technology,micro
