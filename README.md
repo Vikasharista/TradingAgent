@@ -37,6 +37,17 @@ The first run downloads about ten years of files (roughly 30 minutes); later run
 only fetch new days. Prices are back-adjusted for splits, bonuses and rights using
 NSE's restated previous close on each ex-date. Dividends are not adjusted.
 
+## Next-month exit rule (partial profit booking)
+
+The next-month horizon books half the position at 1.5x the risk, moves the stop
+to break-even, and lets the rest run until a close below the 50 DMA, the stop,
+or 60 sessions. The initial stop is 3 ATR below entry. Picks are the top 10
+scores on any day the market regime is not risk-off.
+
+These settings were chosen on 2019-2022 data only and then checked on
+2023-2026, which the tuning never saw (avg +0.40R in the tuning years, +0.32R in
+the unseen years).
+
 ## Known limits of the backtest
 
 - `--universe index` uses today's index members, so stocks that were dropped or
