@@ -1,0 +1,57 @@
+name: Backtest
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_from:
+        description: First signal date to test
+        default: "2019-01-01"
+  push:
+    branches: ["claude/**"]
+    paths: ["agent/**", ".github/workflows/backtest.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: backtest-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt pytest
+
+      - run: python -m pytest -q
+
+      - name: Restore price cache
+        uses: actions/cache@v4
+        with:
+          path: data/cache
+          key: prices-${{ github.run_id }}
+          restore-keys: prices-
+
+      - name: Run backtest
+        run: python -m agent.backtest --start 2017-01-01 --test-from "${{ inputs.test_from || '2019-01-01' }}"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: backtest-results
+          path: results/
+
+      - name: Commit results to the branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/ data/universe.csv
+          git diff --cached --quiet || git commit -m "Backtest results for ${GITHUB_SHA::7}"
+          git push
