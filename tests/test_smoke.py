@@ -41,3 +41,26 @@ def test_backtest_runs(tmp_path, monkeypatch):
         assert (t["stop"] < t["entry"]).all()
         assert (t["target"] > t["entry"]).all()
         assert t["outcome"].isin(["stop", "target", "expired"]).all()
+
+
+def test_adjustment_factors_back_adjust_a_split():
+    from agent.nse import adjustment_factors
+
+    dates = pd.bdate_range("2024-01-01", periods=4)
+    close = pd.DataFrame({"A": [100.0, 102.0, 51.5, 52.0]}, index=dates)
+    # 1:2 split on day 3: NSE restates the previous close from 102 to 51.
+    prev = pd.DataFrame({"A": [99.0, 100.0, 51.0, 51.5]}, index=dates)
+    f = adjustment_factors(close, prev)
+    assert np.allclose((close * f)["A"], [50.0, 51.0, 51.5, 52.0])
+
+
+def test_adjustment_factors_detect_unrestated_bonus():
+    from agent.nse import adjustment_factors
+
+    dates = pd.bdate_range("2024-10-23", periods=4)
+    # Bonus 1:1 where NSE left the previous close as it was.
+    close = pd.DataFrame({"A": [2650.0, 2655.7, 1334.35, 1340.0]}, index=dates)
+    prev = pd.DataFrame({"A": [2640.0, 2650.0, 2655.7, 1334.35]}, index=dates)
+    adj = (close * adjustment_factors(close, prev))["A"]
+    assert np.allclose(adj.iloc[:2], [1325.0, 1327.85])
+    assert np.allclose(adj.iloc[2:], [1334.35, 1340.0])

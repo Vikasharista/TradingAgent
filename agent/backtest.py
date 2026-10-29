@@ -19,7 +19,7 @@ import pandas as pd
 
 from . import regime as rg
 from . import scoring as sc
-from .data import INDIA_VIX, NIFTY500, Panel, download_index, download_prices
+from .data import INDIA_VIX, NIFTY500, Panel, load_index, load_prices
 from .universe import load_universe
 
 OUT = Path("results")
@@ -171,15 +171,21 @@ def summarise(trades: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
 
 
 def run(panel: Panel, uni: pd.DataFrame, index_close: pd.Series,
-        vix: pd.Series | None, test_from: str) -> dict:
-    segment = uni.set_index("symbol")["segment"]
-    industry = uni.set_index("symbol")["industry"]
+        vix: pd.Series | None, test_from: str,
+        delivery_pct: pd.DataFrame | None = None,
+        t2t: pd.DataFrame | None = None) -> dict:
+    # Stocks outside the index lists (the "all" universe) count as small caps
+    # in their own unclassified industry.
+    segment = uni.set_index("symbol")["segment"].reindex(panel.symbols).fillna("small")
+    industry = uni.set_index("symbol")["industry"].reindex(panel.symbols).fillna("Unclassified")
     f = sc.build_features(panel)
     ok = sc.eligible(f, segment)
+    if t2t is not None:
+        ok &= ~t2t.reindex_like(ok).fillna(False).astype(bool)
     regime = rg.market_regime(index_close, panel.close, vix)
 
     scores = {
-        "next_day": sc.score_day(f)[0],
+        "next_day": sc.score_day(f, delivery_pct)[0],
         "next_week": sc.score_week(f)[0],
         "next_month": sc.score_month(f, industry)[0],
     }
@@ -208,6 +214,7 @@ def run(panel: Panel, uni: pd.DataFrame, index_close: pd.Series,
     summary = dict(
         test_from=str(test_dates[0].date()), test_to=str(test_dates[-1].date()),
         universe_size=int(panel.close.shape[1]), regime_share=regime_share,
+        delivery_data=delivery_pct is not None,
         pass_bar=dict(avg_r=PASS_AVG_R, years_beating_nifty500=PASS_YEARS_BEATING),
         results=results,
     )
@@ -221,17 +228,23 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--start", default="2017-01-01", help="first date of price history")
     ap.add_argument("--test-from", default="2019-01-01", help="first signal date tested")
-    ap.add_argument("--refresh", action="store_true")
+    ap.add_argument("--universe", choices=["index", "all"], default="index",
+                    help="index: today's Nifty 500 + Microcap 250 members; all: every "
+                         "NSE-listed stock that passes the liquidity filter on each day "
+                         "(no survivorship bias)")
+    ap.add_argument("--refresh-universe", action="store_true")
+    ap.add_argument("--offline", action="store_true", help="use cached NSE files only")
+    ap.add_argument("--out", default="results")
     args = ap.parse_args()
 
-    uni = load_universe(refresh=args.refresh)
-    panel = download_prices(uni["symbol"].tolist(), start=args.start, refresh=args.refresh)
-    index_close = download_index(NIFTY500, start=args.start)["Close"]
-    try:
-        vix = download_index(INDIA_VIX, start=args.start)["Close"]
-    except Exception:  # noqa: BLE001 - run without VIX rather than fail
-        vix = None
-    run(panel, uni, index_close, vix, args.test_from)
+    global OUT
+    OUT = Path(args.out)
+    uni = load_universe(refresh=args.refresh_universe)
+    symbols = uni["symbol"].tolist() if args.universe == "index" else None
+    panel, delivery, t2t = load_prices(symbols, start=args.start, refresh=not args.offline)
+    index_close = load_index(NIFTY500, start=args.start)["Close"]
+    vix = load_index(INDIA_VIX, start=args.start)["Close"]
+    run(panel, uni, index_close, vix, args.test_from, delivery, t2t)
 
 
 if __name__ == "__main__":

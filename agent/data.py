@@ -1,20 +1,20 @@
-"""End-of-day price data from Yahoo Finance, stored as wide panels
-(rows = dates, columns = NSE symbols)."""
+"""End-of-day price data stored as wide panels (rows = dates, columns = NSE
+symbols). The source is NSE's own daily archive files (see agent/nse.py)."""
 
 from __future__ import annotations
 
-import time
 from dataclasses import dataclass
 from pathlib import Path
 
 import pandas as pd
 
-CACHE_DIR = Path("data/cache")
+from . import nse
+
 FIELDS = ["Open", "High", "Low", "Close", "Volume"]
 
-# Index tickers on Yahoo Finance.
-NIFTY500 = "^CRSLDX"
-INDIA_VIX = "^INDIAVIX"
+# Index names as they appear in NSE's ind_close_all files.
+NIFTY500 = "Nifty 500"
+INDIA_VIX = "India VIX"
 
 
 @dataclass
@@ -39,50 +39,36 @@ class Panel:
         return cls(**{f.lower(): pd.read_parquet(path / f"{f.lower()}.parquet") for f in FIELDS})
 
 
-def _yf_symbol(sym: str) -> str:
-    return f"{sym}.NS"
+def load_prices(symbols: list[str] | None, start: str, refresh: bool = True,
+                min_days: int = 60) -> tuple[Panel, pd.DataFrame, pd.DataFrame]:
+    """Split- and bonus-adjusted daily OHLCV plus delivery % for NSE stocks.
 
+    symbols=None keeps every listed equity (ISIN starting INE), which is
+    used for the survivorship-free check. Returns (panel, delivery_pct, t2t),
+    where t2t is True on days a stock traded in the trade-for-trade (BE)
+    segment, which the spec excludes.
+    """
+    if refresh:
+        nse.sync(start)
+    long = nse.load_equities(start)
+    if symbols is None:
+        long = long[long["isin"].str.startswith("INE")]
+    else:
+        long = long[long["symbol"].isin(set(symbols))]
 
-def download_prices(symbols: list[str], start: str, end: str | None = None,
-                    chunk: int = 80, refresh: bool = False) -> Panel:
-    """Download split- and dividend-adjusted daily OHLCV for NSE symbols."""
-    import yfinance as yf
-
-    path = CACHE_DIR / "prices"
-    if path.exists() and not refresh:
-        return Panel.load(path)
-
-    frames = {f: [] for f in FIELDS}
-    for i in range(0, len(symbols), chunk):
-        batch = symbols[i:i + chunk]
-        tickers = [_yf_symbol(s) for s in batch]
-        for attempt in range(3):
-            try:
-                raw = yf.download(tickers, start=start, end=end, auto_adjust=True,
-                                  group_by="column", progress=False, threads=True)
-                break
-            except Exception:  # noqa: BLE001 - retry transient failures
-                time.sleep(5 * (attempt + 1))
-        else:
-            continue
-        for f in FIELDS:
-            part = raw[f] if isinstance(raw.columns, pd.MultiIndex) else raw[[f]]
-            part = part.rename(columns=lambda t: t.removesuffix(".NS"))
-            frames[f].append(part)
-        print(f"downloaded {min(i + chunk, len(symbols))}/{len(symbols)}", flush=True)
-
-    panel = Panel(**{f.lower(): pd.concat(frames[f], axis=1).sort_index() for f in FIELDS})
-    # Drop symbols with almost no history.
-    keep = panel.close.notna().sum() > 60
+    wide = {c: long.pivot(index="date", columns="symbol", values=c)
+            for c in ["open", "high", "low", "close", "prev_close", "volume", "deliv_pct"]}
+    factor = nse.adjustment_factors(wide["close"], wide["prev_close"])
+    panel = Panel(
+        open=wide["open"] * factor, high=wide["high"] * factor,
+        low=wide["low"] * factor, close=wide["close"] * factor,
+        volume=wide["volume"] / factor,
+    )
+    keep = panel.close.notna().sum() > min_days
     panel = Panel(**{f.lower(): getattr(panel, f.lower()).loc[:, keep] for f in FIELDS})
-    panel.save(path)
-    return panel
+    t2t = long.pivot(index="date", columns="symbol", values="series").eq("BE")
+    return panel, wide["deliv_pct"].loc[:, keep], t2t.loc[:, keep]
 
 
-def download_index(ticker: str, start: str, end: str | None = None) -> pd.DataFrame:
-    import yfinance as yf
-
-    df = yf.download(ticker, start=start, end=end, auto_adjust=True, progress=False)
-    if isinstance(df.columns, pd.MultiIndex):
-        df.columns = df.columns.get_level_values(0)
-    return df[["Open", "High", "Low", "Close"]].dropna()
+def load_index(name: str, start: str) -> pd.DataFrame:
+    return nse.load_index(name, start)
