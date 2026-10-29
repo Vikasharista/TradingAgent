@@ -16,8 +16,9 @@ INDEX_FILES = {
     "microcap250": "ind_niftymicrocap250_list.csv",
 }
 
-# NSE sometimes refuses cloud IPs, so try both official hosts.
+# NSE sometimes refuses cloud IPs, so try each official host in turn.
 BASE_URLS = [
+    "https://archives.nseindia.com/content/indices/",
     "https://nsearchives.nseindia.com/content/indices/",
     "https://www.niftyindices.com/IndexConstituent/",
 ]
