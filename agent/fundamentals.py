@@ -188,3 +188,55 @@ def fundamentals_panel(symbols: list[str], industry: pd.Series,
             latest[sym] = sig
     panel = pd.DataFrame(cols, index=dates).reindex(columns=symbols)
     return panel, latest
+
+
+def _top_ratios(html: str) -> dict[str, float]:
+    import re
+    i = html.find('id="top-ratios"')
+    if i < 0:
+        return {}
+    block = html[i:html.find("</ul>", i)]
+    out = {}
+    for name, value in re.findall(r'<span class="name">\s*(.*?)\s*</span>.*?<span class="number">([^<]*)</span>', block, re.S):
+        out[name.strip()] = _num(value)
+    return out
+
+
+def snapshot(sym: str) -> dict | None:
+    """Everything shown on the dashboard's company card, as of the latest page.
+
+    Valuation comes from the page's current figures; growth, margins, cash
+    flow and holdings from the latest reported period. Promoter pledges are not
+    on the public page, so they are not included.
+    """
+    p = CACHE / f"{sym}.html"
+    if not p.exists():
+        return None
+    html = p.read_text()
+    top = _top_ratios(html)
+    d = parse(sym)
+    q, pl = _section(html, "quarters"), _section(html, "profit-loss")
+    cf, ra = _section(html, "cash-flow"), _section(html, "ratios")
+    opm = _series(q, "OPM %").combine_first(_series(q, "Financing Margin %"))
+    eps_ttm = d["q_eps"].rolling(4).sum()
+    eps_ttm_g = (eps_ttm / eps_ttm.shift(4) - 1).dropna()
+    cfo, np_y = _series(cf, "Cash from Operating Activity"), _series(pl, "Net Profit")
+    last = lambda s: float(s.dropna().iloc[-1]) if s.notna().any() else None  # noqa: E731
+    pe, price, book = top.get("Stock P/E"), top.get("Current Price"), top.get("Book Value")
+    g = last(eps_ttm_g)
+    return dict(
+        market_cap_cr=top.get("Market Cap"), pe=pe,
+        peg=round(pe / (g * 100), 2) if pe and g and g > 0 else None,
+        pb=round(price / book, 2) if price and book else None,
+        dividend_yield=top.get("Dividend Yield"),
+        roe=top.get("ROE"), roce=top.get("ROCE"),
+        opm_latest=last(opm), opm_year_ago=float(opm.iloc[-5]) if len(opm) >= 5 else None,
+        eps_ttm_growth=round(g * 100, 1) if g is not None else None,
+        cfo_to_profit=round(last(cfo) / last(np_y), 2) if last(cfo) is not None and last(np_y) else None,
+        promoters=last(d["promoters"]), fii=last(d["fii"]), dii=last(d["dii"]),
+        promoters_chg_1y=float(d["promoters"].iloc[-1] - d["promoters"].iloc[-5]) if len(d["promoters"]) >= 5 else None,
+        inst_chg_1y=float((d["fii"] + d["dii"]).iloc[-1] - (d["fii"] + d["dii"]).iloc[-5]) if len(d["fii"]) >= 5 else None,
+        quarters=pd.DataFrame({"sales": d["q_sales"], "net_profit": d["q_profit"], "opm": opm, "eps": d["q_eps"]}),
+        holding=pd.DataFrame({"promoters": d["promoters"], "fii": d["fii"], "dii": d["dii"]}),
+        roce_history=_series(ra, "ROCE %"),
+    )
