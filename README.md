@@ -12,6 +12,7 @@ The rules are set out in the [strategy and scoring spec](https://claude.ai/artif
 | --- | --- |
 | `agent/universe.py` | Downloads the index constituent lists from NSE |
 | `agent/nse.py` | Downloads and caches NSE's daily archive files: bhavcopy, delivery %, index closes |
+| `agent/fundamentals.py` | Quarterly results, annual ROE and debt, and shareholding from screener.in, scored point in time |
 | `agent/data.py` | Turns the NSE files into split-adjusted date x symbol panels |
 | `agent/indicators.py` | EMAs, RSI, ATR, MACD and the 0-100 scoring helpers |
 | `agent/scoring.py` | The next-day, next-week and next-month scores |
@@ -48,14 +49,25 @@ These settings were chosen on 2019-2022 data only and then checked on
 2023-2026, which the tuning never saw (avg +0.40R in the tuning years, +0.32R in
 the unseen years).
 
+## Fundamentals
+
+`--fundamentals` adds the spec's 20-point fundamentals pillar to the next-month
+score: EPS growth and acceleration, sales growth, ROE and debt/equity (banks and
+NBFCs skip debt/equity), and promoter and FII/DII holding changes. Pages come
+from screener.in (paths its robots.txt allows, one request every 1.5 seconds,
+cached for a week). A quarter's numbers count only from 45 days after it ends
+(60 for March), when the results have to be public. Screener pages hold about 13
+quarters, so year-on-year growth exists from about August 2024; before that the
+technical signals stand alone.
+
 ## Known limits of the backtest
 
 - `--universe index` uses today's index members, so stocks that were dropped or
   delisted are missing. That flatters the results (survivorship bias).
   `--universe all` avoids this by taking every listed stock that passed the
   liquidity filter on each day, including ones delisted since.
-- Fundamentals and FII flows have no free point-in-time history, so their
-  weights are spread over the other signals in the backtest. Delivery % is used.
+- Fundamentals only reach back to about August 2024, and FII flows are not
+  used. Delivery % is used.
 - When a stop and a target are both touched in the same session, the stop is
   assumed to have been hit first.
 
