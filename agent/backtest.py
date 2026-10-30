@@ -200,7 +200,8 @@ def summarise(trades: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
 def run(panel: Panel, uni: pd.DataFrame, index_close: pd.Series,
         vix: pd.Series | None, test_from: str,
         delivery_pct: pd.DataFrame | None = None,
-        t2t: pd.DataFrame | None = None) -> dict:
+        t2t: pd.DataFrame | None = None,
+        fundamentals: pd.DataFrame | None = None) -> dict:
     # Stocks outside the index lists (the "all" universe) count as small caps
     # in their own unclassified industry.
     segment = uni.set_index("symbol")["segment"].reindex(panel.symbols).fillna("small")
@@ -214,7 +215,7 @@ def run(panel: Panel, uni: pd.DataFrame, index_close: pd.Series,
     scores = {
         "next_day": sc.score_day(f, delivery_pct)[0],
         "next_week": sc.score_week(f)[0],
-        "next_month": sc.score_month(f, industry)[0],
+        "next_month": sc.score_month(f, industry, fundamentals)[0],
     }
     test_dates = panel.close.index[panel.close.index >= pd.Timestamp(test_from)]
     # The last signal date must leave room for the longest holding period.
@@ -247,6 +248,7 @@ def run(panel: Panel, uni: pd.DataFrame, index_close: pd.Series,
         test_from=str(test_dates[0].date()), test_to=str(test_dates[-1].date()),
         universe_size=int(panel.close.shape[1]), regime_share=regime_share,
         delivery_data=delivery_pct is not None,
+        fundamentals_data=fundamentals is not None,
         pass_bar=dict(avg_r=PASS_AVG_R, years_beating_nifty500=PASS_YEARS_BEATING),
         results=results,
     )
@@ -266,6 +268,8 @@ def main() -> None:
                          "(no survivorship bias)")
     ap.add_argument("--refresh-universe", action="store_true")
     ap.add_argument("--offline", action="store_true", help="use cached NSE files only")
+    ap.add_argument("--fundamentals", action="store_true",
+                    help="add the screener.in fundamentals score to next month (index stocks)")
     ap.add_argument("--out", default="results")
     args = ap.parse_args()
 
@@ -276,7 +280,14 @@ def main() -> None:
     panel, delivery, t2t = load_prices(symbols, start=args.start, refresh=not args.offline)
     index_close = load_index(NIFTY500, start=args.start)["Close"]
     vix = load_index(INDIA_VIX, start=args.start)["Close"]
-    run(panel, uni, index_close, vix, args.test_from, delivery, t2t)
+    fund = None
+    if args.fundamentals:
+        from . import fundamentals as fu
+        if not args.offline:
+            fu.fetch(uni["symbol"].tolist())
+        industry = uni.set_index("symbol")["industry"]
+        fund, _ = fu.fundamentals_panel(uni["symbol"].tolist(), industry, panel.close.index)
+    run(panel, uni, index_close, vix, args.test_from, delivery, t2t, fund)
 
 
 if __name__ == "__main__":

@@ -8,6 +8,7 @@
     "neutral": 0.284
   },
   "delivery_data": true,
+  "fundamentals_data": true,
   "pass_bar": {
     "avg_r": 0.2,
     "years_beating_nifty500": 0.6
@@ -69,26 +70,26 @@
       "signals": 12120,
       "trades": 12120,
       "trigger_rate": 1.0,
-      "hit_rate": 0.472029702970297,
-      "win_rate": 0.5392739273927393,
-      "avg_r": 0.3643593842556659,
-      "avg_net_return": 0.03919274561624857,
-      "avg_excess_return": 0.022433466328692926,
+      "hit_rate": 0.47384488448844886,
+      "win_rate": 0.5405940594059406,
+      "avg_r": 0.3654235706922614,
+      "avg_net_return": 0.03932381328275539,
+      "avg_excess_return": 0.02271896601924192,
       "years_beating_nifty500": 0.75,
-      "max_drawdown_r": 400.1075338173858,
+      "max_drawdown_r": 400.10753381738584,
       "passes": true
     },
     "next_month/always_top10": {
       "signals": 18622,
       "trades": 18622,
       "trigger_rate": 1.0,
-      "hit_rate": 0.4500590699173021,
-      "win_rate": 0.5247556653420685,
-      "avg_r": 0.297498647001029,
-      "avg_net_return": 0.033633449535149636,
-      "avg_excess_return": 0.011639874497621884,
+      "hit_rate": 0.45408656427881,
+      "win_rate": 0.5280850606809151,
+      "avg_r": 0.3047012301585751,
+      "avg_net_return": 0.034349304974028674,
+      "avg_excess_return": 0.01254141407817261,
       "years_beating_nifty500": 0.625,
-      "max_drawdown_r": 686.245434415614,
+      "max_drawdown_r": 698.7518969276589,
       "passes": true
     }
   }
