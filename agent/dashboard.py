@@ -25,6 +25,7 @@ import pandas as pd
 from . import fundamentals as fu
 from . import regime as rg
 from . import scoring as sc
+from .trendlines import trend_lines
 from .data import INDIA_VIX, NIFTY500, load_index, load_prices
 from .universe import load_universe
 
@@ -119,6 +120,14 @@ def build(out: Path, start: str, offline: bool = False) -> dict:
                            volume=int(r.volume) if np.isfinite(r.volume) else None,
                            sma50=r2(r.sma50), ema20=r2(r.ema20)))
     counts["price_history"] = _dump(out, "price_history", ph)
+
+    # 2b. Automatic support and resistance over the same sessions.
+    tl = []
+    for sym in top:
+        sub = pd.DataFrame({"low": panel.low[sym], "high": panel.high[sym], "close": c[sym]})
+        sub = sub.dropna().iloc[-HISTORY_SESSIONS:].rename_axis("date").reset_index()
+        tl += [dict(symbol=sym, **line) for line in trend_lines(sub)]
+    counts["trendlines"] = _dump(out, "trendlines", tl)
 
     # 3. Market regime.
     i5 = idx.reindex(c.index, method="ffill")

@@ -64,3 +64,19 @@ def test_adjustment_factors_detect_unrestated_bonus():
     adj = (close * adjustment_factors(close, prev))["A"]
     assert np.allclose(adj.iloc[:2], [1325.0, 1327.85])
     assert np.allclose(adj.iloc[2:], [1334.35, 1340.0])
+
+
+def test_trend_lines_find_rising_support():
+    import numpy as np
+    import pandas as pd
+    from agent.trendlines import trend_lines
+    n = 120
+    i = np.arange(n)
+    base = 100 + 0.2 * i + 5 * np.sin(i / 6)        # rising, wavy
+    df = pd.DataFrame({"date": pd.bdate_range("2026-01-01", periods=n),
+                       "low": base - 1, "high": base + 1, "close": base})
+    lines = {l["kind"]: l for l in trend_lines(df)}
+    s = lines["support"]
+    assert s["anchor_price"] > s["start_price"] and s["anchor_date"] > s["start_date"]
+    assert not s["broken"]
+    assert s["end_date"] == str(df["date"].iloc[-1].date())
