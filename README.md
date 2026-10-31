@@ -22,8 +22,9 @@ The rules are set out in the [strategy and scoring spec](https://claude.ai/artif
 
 ## Running the backtest
 
-The **Backtest** GitHub Actions workflow runs on every push to a `claude/` branch
-and can be started by hand from the Actions tab. Locally:
+The **CI** workflow runs the tests on every pull request and push to main. The
+**Backtest** workflow (about an hour, it downloads years of NSE files) runs only
+when started by hand from the Actions tab. Locally:
 
 ```
 pip install -r requirements.txt
