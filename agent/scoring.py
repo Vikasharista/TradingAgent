@@ -185,10 +185,18 @@ def score_month(f: Features, industry: pd.Series,
         "trend": (25, trend),
         "rs_rating": (12, ind.ramp(rs, 50, 90)),
         "sector": (8, ind.ramp(sec, 12, 4)),
-        "fundamentals": (20, fundamentals),
     }
-    score = _combine(signals).where(gate)
+    score = _combine(signals)
+    if fundamentals is not None:
+        # Fundamentals carry 20 of 100 points where they are known; elsewhere
+        # (no results yet, or a stock outside the fetched list) the technical
+        # signals stand alone.
+        f20 = fundamentals.reindex_like(score)
+        score = (score * 80 + f20 * 20).div(100).where(f20.notna(), score)
+    score = score.where(gate)
     extra = {k: s for k, (_, s) in signals.items() if s is not None}
+    if fundamentals is not None:
+        extra["fundamentals"] = fundamentals
     extra["rs_rating"] = rs
     extra["trend_template"] = gate
     return score, extra
