@@ -1,0 +1,346 @@
+{
+  "test_from": "2017-01-02",
+  "last_signal": "2025-11-03",
+  "rebalances": 107,
+  "universe_size": 497,
+  "hold_sessions": 252,
+  "chosen_exit": "exit_below_200dma",
+  "pass_bar": {
+    "avg_excess_segment": 0.03,
+    "years_beating_segment": 0.6
+  },
+  "results": {
+    "model/hold_12m": {
+      "all": {
+        "trades": 2727,
+        "win_rate": 0.6692335900256692,
+        "avg_net_return": 0.30032497832053556,
+        "median_net_return": 0.15364331210191096,
+        "avg_segment_return": 0.29012384004320796,
+        "avg_nifty500_return": 0.1494582653941489,
+        "avg_excess_segment": 0.010201138277327593,
+        "avg_excess_nifty": 0.15086671292638665,
+        "beat_segment_share": 0.4294096076274294,
+        "years_beating_segment": 0.6666666666666666,
+        "avg_days_held": 252.0
+      },
+      "tune_2017_2021": {
+        "trades": 1317,
+        "win_rate": 0.6651480637813212,
+        "avg_net_return": 0.297137094298732,
+        "median_net_return": 0.14938061465721053,
+        "avg_segment_return": 0.2883927771411789,
+        "avg_nifty500_return": 0.17009637361143462,
+        "avg_excess_segment": 0.00874431715755315,
+        "avg_excess_nifty": 0.12704072068729746,
+        "beat_segment_share": 0.42217160212604404,
+        "years_beating_segment": 0.6,
+        "avg_days_held": 252.0
+      },
+      "check_2022_on": {
+        "trades": 1410,
+        "win_rate": 0.673049645390071,
+        "avg_net_return": 0.3033025976515393,
+        "median_net_return": 0.1594702842873234,
+        "avg_segment_return": 0.2917407264559543,
+        "avg_nifty500_return": 0.13018139410183313,
+        "avg_excess_segment": 0.011561871195585008,
+        "avg_excess_nifty": 0.17312120354970612,
+        "beat_segment_share": 0.43617021276595747,
+        "years_beating_segment": 0.75,
+        "avg_days_held": 252.0
+      },
+      "by_segment": {
+        "large": {
+          "trades": 903,
+          "win_rate": 0.7308970099667774,
+          "avg_net_return": 0.3133020786576796,
+          "median_net_return": 0.19054931290145927,
+          "avg_segment_return": 0.2875664901108921,
+          "avg_nifty500_return": 0.1499689901180627,
+          "avg_excess_segment": 0.025735588546787504,
+          "avg_excess_nifty": 0.1633330885396169,
+          "beat_segment_share": 0.4684385382059801,
+          "years_beating_segment": 0.75,
+          "avg_days_held": 252.0
+        },
+        "mid": {
+          "trades": 901,
+          "win_rate": 0.6592674805771365,
+          "avg_net_return": 0.2922262076775747,
+          "median_net_return": 0.13296759623969345,
+          "avg_segment_return": 0.27691568014730256,
+          "avg_nifty500_return": 0.15022226082757403,
+          "avg_excess_segment": 0.015310527530272124,
+          "avg_excess_nifty": 0.14200394685000062,
+          "beat_segment_share": 0.4284128745837958,
+          "years_beating_segment": 0.5,
+          "avg_days_held": 252.0
+        },
+        "small": {
+          "trades": 923,
+          "win_rate": 0.6186348862405201,
+          "avg_net_return": 0.2955348057797627,
+          "median_net_return": 0.13607832214673754,
+          "avg_segment_return": 0.30551911529249504,
+          "avg_nifty500_return": 0.1482128219367163,
+          "avg_excess_segment": -0.009984309512732338,
+          "avg_excess_nifty": 0.1473219838430464,
+          "beat_segment_share": 0.39219934994582883,
+          "years_beating_segment": 0.5555555555555556,
+          "avg_days_held": 252.0
+        }
+      },
+      "passes": false
+    },
+    "model/exit_below_200dma": {
+      "all": {
+        "trades": 2727,
+        "win_rate": 0.4561789512284562,
+        "avg_net_return": 0.21568719701097597,
+        "median_net_return": -0.0345401845015022,
+        "avg_segment_return": 0.18329344794168378,
+        "avg_nifty500_return": 0.0879533044437713,
+        "avg_excess_segment": 0.03239374906929223,
+        "avg_excess_nifty": 0.12773389256720466,
+        "beat_segment_share": 0.3736707004033737,
+        "years_beating_segment": 0.7777777777777778,
+        "avg_days_held": 162.44261092775943
+      },
+      "tune_2017_2021": {
+        "trades": 1317,
+        "win_rate": 0.4411541381928626,
+        "avg_net_return": 0.2063411753343833,
+        "median_net_return": -0.038627492130115404,
+        "avg_segment_return": 0.17433606408464425,
+        "avg_nifty500_return": 0.09205339941316039,
+        "avg_excess_segment": 0.03200511124973906,
+        "avg_excess_nifty": 0.1142877759212229,
+        "beat_segment_share": 0.38344722854973423,
+        "years_beating_segment": 0.8,
+        "avg_days_held": 159.14654517843584
+      },
+      "check_2022_on": {
+        "trades": 1410,
+        "win_rate": 0.4702127659574468,
+        "avg_net_return": 0.22441677895996368,
+        "median_net_return": -0.024569634005975664,
+        "avg_segment_return": 0.19166002562942916,
+        "avg_nifty500_return": 0.08412364127023554,
+        "avg_excess_segment": 0.032756753330534454,
+        "avg_excess_nifty": 0.14029313768972812,
+        "beat_segment_share": 0.3645390070921986,
+        "years_beating_segment": 0.75,
+        "avg_days_held": 165.5212765957447
+      },
+      "by_segment": {
+        "large": {
+          "trades": 903,
+          "win_rate": 0.49723145071982283,
+          "avg_net_return": 0.20135102296778026,
+          "median_net_return": -0.002032265837089261,
+          "avg_segment_return": 0.1916810515424153,
+          "avg_nifty500_return": 0.09201865371738221,
+          "avg_excess_segment": 0.009669971425364984,
+          "avg_excess_nifty": 0.10933236925039805,
+          "beat_segment_share": 0.3909191583610188,
+          "years_beating_segment": 0.625,
+          "avg_days_held": 175.49723145071982
+        },
+        "mid": {
+          "trades": 901,
+          "win_rate": 0.44617092119866814,
+          "avg_net_return": 0.21935197883024415,
+          "median_net_return": -0.04062371134020604,
+          "avg_segment_return": 0.18563078077377607,
+          "avg_nifty500_return": 0.09504709611760015,
+          "avg_excess_segment": 0.03372119805646806,
+          "avg_excess_nifty": 0.12430488271264398,
+          "beat_segment_share": 0.3518312985571587,
+          "years_beating_segment": 0.625,
+          "avg_days_held": 161.54716981132074
+        },
+        "small": {
+          "trades": 923,
+          "win_rate": 0.4257854821235103,
+          "avg_net_return": 0.2261352974896815,
+          "median_net_return": -0.049941982640475106,
+          "avg_segment_return": 0.1728059691408433,
+          "avg_nifty500_return": 0.07705133619654435,
+          "avg_excess_segment": 0.05332932834883814,
+          "avg_excess_nifty": 0.14908396129313709,
+          "beat_segment_share": 0.3781148429035753,
+          "years_beating_segment": 0.6666666666666666,
+          "avg_days_held": 150.54496208017335
+        }
+      },
+      "passes": true
+    },
+    "fundamentals_only/hold_12m": {
+      "all": {
+        "trades": 2727,
+        "win_rate": 0.6593325999266594,
+        "avg_net_return": 0.24983712978923164,
+        "median_net_return": 0.13310137744316108,
+        "avg_segment_return": 0.29012384004320796,
+        "avg_nifty500_return": 0.1494582653941489,
+        "avg_excess_segment": -0.040286710253976364,
+        "avg_excess_nifty": 0.10037886439508271,
+        "beat_segment_share": 0.4000733406674001,
+        "years_beating_segment": 0.4444444444444444,
+        "avg_days_held": 252.0
+      },
+      "tune_2017_2021": {
+        "trades": 1317,
+        "win_rate": 0.6590736522399393,
+        "avg_net_return": 0.2835306572212478,
+        "median_net_return": 0.14502729622913801,
+        "avg_segment_return": 0.2883927771411789,
+        "avg_nifty500_return": 0.17009637361143462,
+        "avg_excess_segment": -0.004862119919931081,
+        "avg_excess_nifty": 0.11343428360981324,
+        "beat_segment_share": 0.42217160212604404,
+        "years_beating_segment": 0.6,
+        "avg_days_held": 252.0
+      },
+      "check_2022_on": {
+        "trades": 1410,
+        "win_rate": 0.6595744680851063,
+        "avg_net_return": 0.2183659414006037,
+        "median_net_return": 0.12779187673487696,
+        "avg_segment_return": 0.2917407264559543,
+        "avg_nifty500_return": 0.13018139410183313,
+        "avg_excess_segment": -0.07337478505535056,
+        "avg_excess_nifty": 0.0881845472987706,
+        "beat_segment_share": 0.37943262411347517,
+        "years_beating_segment": 0.25,
+        "avg_days_held": 252.0
+      },
+      "by_segment": {
+        "large": {
+          "trades": 903,
+          "win_rate": 0.7009966777408638,
+          "avg_net_return": 0.2575426593859595,
+          "median_net_return": 0.1503933054393305,
+          "avg_segment_return": 0.2875664901108921,
+          "avg_nifty500_return": 0.1499689901180627,
+          "avg_excess_segment": -0.030023830724932626,
+          "avg_excess_nifty": 0.10757366926789678,
+          "beat_segment_share": 0.3909191583610188,
+          "years_beating_segment": 0.625,
+          "avg_days_held": 252.0
+        },
+        "mid": {
+          "trades": 901,
+          "win_rate": 0.6781354051054383,
+          "avg_net_return": 0.2865112651256569,
+          "median_net_return": 0.16628597795543398,
+          "avg_segment_return": 0.27691568014730256,
+          "avg_nifty500_return": 0.15022226082757403,
+          "avg_excess_segment": 0.009595584978354365,
+          "avg_excess_nifty": 0.13628900429808286,
+          "beat_segment_share": 0.46614872364039955,
+          "years_beating_segment": 0.75,
+          "avg_days_held": 252.0
+        },
+        "small": {
+          "trades": 923,
+          "win_rate": 0.600216684723727,
+          "avg_net_return": 0.20649857164842506,
+          "median_net_return": 0.08066666666666678,
+          "avg_segment_return": 0.30551911529249504,
+          "avg_nifty500_return": 0.1482128219367163,
+          "avg_excess_segment": -0.09902054364407002,
+          "avg_excess_nifty": 0.0582857497117087,
+          "beat_segment_share": 0.3445287107258938,
+          "years_beating_segment": 0.3333333333333333,
+          "avg_days_held": 252.0
+        }
+      },
+      "passes": false
+    },
+    "technical_only/hold_12m": {
+      "all": {
+        "trades": 2727,
+        "win_rate": 0.6681334800146681,
+        "avg_net_return": 0.33936645543454824,
+        "median_net_return": 0.17914838861152949,
+        "avg_segment_return": 0.29012384004320796,
+        "avg_nifty500_return": 0.1494582653941489,
+        "avg_excess_segment": 0.04924261539134027,
+        "avg_excess_nifty": 0.18990819004039936,
+        "beat_segment_share": 0.43747708104143745,
+        "years_beating_segment": 0.6666666666666666,
+        "avg_days_held": 252.0
+      },
+      "tune_2017_2021": {
+        "trades": 1317,
+        "win_rate": 0.6583143507972665,
+        "avg_net_return": 0.30802023291482095,
+        "median_net_return": 0.16795225916453527,
+        "avg_segment_return": 0.2883927771411789,
+        "avg_nifty500_return": 0.17009637361143462,
+        "avg_excess_segment": 0.01962745577364202,
+        "avg_excess_nifty": 0.13792385930338633,
+        "beat_segment_share": 0.4214123006833713,
+        "years_beating_segment": 0.6,
+        "avg_days_held": 252.0
+      },
+      "check_2022_on": {
+        "trades": 1410,
+        "win_rate": 0.6773049645390071,
+        "avg_net_return": 0.3686451611497829,
+        "median_net_return": 0.19385320756605556,
+        "avg_segment_return": 0.2917407264559543,
+        "avg_nifty500_return": 0.13018139410183313,
+        "avg_excess_segment": 0.07690443469382864,
+        "avg_excess_nifty": 0.2384637670479498,
+        "beat_segment_share": 0.4524822695035461,
+        "years_beating_segment": 0.75,
+        "avg_days_held": 252.0
+      },
+      "by_segment": {
+        "large": {
+          "trades": 903,
+          "win_rate": 0.717607973421927,
+          "avg_net_return": 0.31028437423322874,
+          "median_net_return": 0.1903545709634582,
+          "avg_segment_return": 0.2875664901108921,
+          "avg_nifty500_return": 0.1499689901180627,
+          "avg_excess_segment": 0.022717884122336628,
+          "avg_excess_nifty": 0.16031538411516602,
+          "beat_segment_share": 0.43964562569213733,
+          "years_beating_segment": 0.875,
+          "avg_days_held": 252.0
+        },
+        "mid": {
+          "trades": 901,
+          "win_rate": 0.6514983351831298,
+          "avg_net_return": 0.31454727708137764,
+          "median_net_return": 0.15364331210191096,
+          "avg_segment_return": 0.27691568014730256,
+          "avg_nifty500_return": 0.15022226082757403,
+          "avg_excess_segment": 0.037631596934075084,
+          "avg_excess_nifty": 0.16432501625380355,
+          "beat_segment_share": 0.42064372918978915,
+          "years_beating_segment": 0.5,
+          "avg_days_held": 252.0
+        },
+        "small": {
+          "trades": 923,
+          "win_rate": 0.6359696641386782,
+          "avg_net_return": 0.3920459776674824,
+          "median_net_return": 0.18870063694267525,
+          "avg_segment_return": 0.30551911529249504,
+          "avg_nifty500_return": 0.1482128219367163,
+          "avg_excess_segment": 0.08652686237498733,
+          "avg_excess_nifty": 0.24383315573076605,
+          "beat_segment_share": 0.4517876489707476,
+          "years_beating_segment": 0.7777777777777778,
+          "avg_days_held": 252.0
+        }
+      },
+      "passes": false
+    }
+  }
+}

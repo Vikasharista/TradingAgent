@@ -193,8 +193,10 @@ def score_month(f: Features, industry: pd.Series,
         # signals stand alone.
         f20 = fundamentals.reindex_like(score)
         score = (score * 80 + f20 * 20).div(100).where(f20.notna(), score)
+    ungated = score
     score = score.where(gate)
     extra = {k: s for k, (_, s) in signals.items() if s is not None}
+    extra["ungated"] = ungated
     if fundamentals is not None:
         extra["fundamentals"] = fundamentals
     extra["rs_rating"] = rs

@@ -23,16 +23,20 @@ import numpy as np
 import pandas as pd
 
 from . import fundamentals as fu
+from . import longterm as lt
 from . import regime as rg
 from . import scoring as sc
 from .trendlines import trend_lines
 from .data import INDIA_VIX, NIFTY500, load_index, load_prices
+from .selection import SEGMENTS, pick_by_segment
 from .universe import load_universe
 
-TOP = 10
-CONTENDERS = 60          # stocks whose fundamentals are refreshed each night
+CONTENDERS = 30          # per size: stocks whose quarterly results are refreshed each night
+LONG_MAX_AGE_DAYS = 30   # annual accounts for the long-term list change slowly
+LONG_FETCH_LIMIT = 80    # pages refreshed per night for the long-term list
 HISTORY_SESSIONS = 250   # candles shown per stock
 REGIME_SESSIONS = 500
+SIZE_LABEL = {"large": "Large cap", "mid": "Mid cap", "small": "Small cap"}
 EXIT_LABELS = {"stop": "Stopped out", "expired": "Held to 60 sessions",
                "trail": "Trailed out (50 DMA)",
                "breakeven_after_booking": "Booked half, rest at break-even"}
@@ -48,9 +52,25 @@ def r2(x):
     return round(x, 2) if np.isfinite(x) else None
 
 
+def pct(x):
+    v = r2(x)
+    return None if v is None else round(v * 100, 1)
+
+
 def _dump(out: Path, name: str, rows) -> int:
     (out / f"{name}.json").write_text(json.dumps(rows))
     return len(rows)
+
+
+def _contenders(tech: pd.Series, loose: pd.Series, seg: pd.Series) -> list[str]:
+    """Per size, the best technical scores that pass the trend template plus
+    the best that miss it (candidates to fill a short size)."""
+    out = []
+    for name in SEGMENTS:
+        mine = seg.reindex(tech.index).eq(name)
+        out += tech[mine].dropna().nlargest(CONTENDERS).index.tolist()
+        out += loose[mine].dropna().nlargest(CONTENDERS // 2).index.tolist()
+    return list(dict.fromkeys(out))
 
 
 def build(out: Path, start: str, offline: bool = False) -> dict:
@@ -62,38 +82,51 @@ def build(out: Path, start: str, offline: bool = False) -> dict:
     info = uni.set_index("symbol")
     seg = info["segment"].reindex(panel.symbols).fillna("small")
     industry = info["industry"].reindex(panel.symbols).fillna("Unclassified")
+    sized = [s for s in panel.symbols if seg[s] in SEGMENTS]   # microcaps left out
 
     f = sc.build_features(panel)
-    ok = sc.eligible(f, seg) & ~t2t.reindex_like(panel.close).fillna(False).astype(bool)
+    ok = (sc.eligible(f, seg) & ~t2t.reindex_like(panel.close).fillna(False).astype(bool)
+          & seg.isin(SEGMENTS).to_numpy()[None, :])
     reg = rg.market_regime(idx, panel.close, vix)
     c = panel.close
     last = c.index[-1]
+    okl = ok.loc[last]
 
-    # Technical score first, then fundamentals for the contenders only.
-    tech, _ = sc.score_month(f, industry)
-    contenders = tech.loc[last].where(ok.loc[last]).dropna().nlargest(CONTENDERS).index.tolist()
+    # Mid term: technical score first, then quarterly fundamentals for the
+    # contenders only (they carry 20 of the 100 points).
+    tech, tech_extra = sc.score_month(f, industry)
+    contenders = _contenders(tech.loc[last].where(okl), tech_extra["ungated"].loc[last].where(okl), seg)
     if not offline:
         fu.fetch(contenders)
+        fu.fetch(sized, max_age_days=LONG_MAX_AGE_DAYS, limit=LONG_FETCH_LIMIT)
     fund, flatest = fu.fundamentals_panel(contenders, industry, c.index)
     fund = fund.reindex(columns=c.columns)
     score, extra = sc.score_month(f, industry, fund)
-    s = score.loc[last].where(ok.loc[last]).dropna().sort_values(ascending=False)
-    top = s.head(TOP).index
+    mid = pick_by_segment(score.loc[last].where(okl), extra["ungated"].loc[last].where(okl), seg)
 
-    # 1. Watchlist (picks when the market is not risk-off) with trade levels.
-    atr, sma50 = f.atr14.loc[last], f.sma50.loc[last]
+    # Long term: annual accounts for every large, mid and small cap.
+    lfund, llatest = lt.fundamentals_panels(sized, industry, c.index)
+    lscore, lparts = lt.score(f, lfund)
+    long_ = pick_by_segment(lscore.loc[last].where(okl), None, seg)
+
+    def base(sym):
+        return dict(symbol=sym, company=info.at[sym, "company"] if sym in info.index else sym,
+                    industry=info.at[sym, "industry"] if sym in info.index else "",
+                    segment=seg[sym], size=SIZE_LABEL.get(seg[sym], seg[sym]))
+
+    # 1. Mid-term list (picks when the market is not risk-off) with trade levels.
+    atr, sma50, sma200 = f.atr14.loc[last], f.sma50.loc[last], f.sma200.loc[last]
     rows = []
-    for rank, sym in enumerate(top, 1):
+    for pk in mid:
+        sym = pk["symbol"]
         cl = c.at[last, sym]
         stop = cl - 3 * atr[sym]
         risk = cl - stop
         fl = flatest.get(sym)
         rows.append(dict(
-            rank=rank, symbol=sym,
-            company=info.at[sym, "company"] if sym in info.index else sym,
-            industry=info.at[sym, "industry"] if sym in info.index else "",
-            segment=info.at[sym, "segment"] if sym in info.index else "",
-            score=r2(s[sym]), close=r2(cl), stop=r2(stop), book_at=r2(cl + 1.5 * risk),
+            rank=pk["rank"], **base(sym), filled=pk["filled"],
+            passes_trend_template=not pk["filled"],
+            score=r2(pk["score"]), close=r2(cl), stop=r2(stop), book_at=r2(cl + 1.5 * risk),
             trail_50dma=r2(sma50[sym]), risk_pct=r2(risk / cl * 100),
             **{k: r2(extra[k].at[last, sym]) for k in
                ("rs_rating", "trend", "momentum", "accumulation", "weekly_setup", "sector")},
@@ -108,22 +141,45 @@ def build(out: Path, start: str, offline: bool = False) -> dict:
             turnover_cr=r2(f.turnover20.at[last, sym] / sc.CRORE)))
     counts = {"watchlist": _dump(out, "watchlist", rows)}
 
-    # 2. Candles with the 50 DMA and 20 EMA.
+    # 1b. Long-term list.
+    lrows = []
+    for pk in long_:
+        sym = pk["symbol"]
+        cl = c.at[last, sym]
+        a = llatest[sym].iloc[-1]
+        sn = fu.snapshot(sym) or {}
+        lrows.append(dict(
+            rank=pk["rank"], **base(sym), score=r2(pk["score"]), close=r2(cl),
+            sma200=r2(sma200[sym]), review_below=r2(0.9 * sma200[sym]),
+            **{k: r2(lparts[k].at[last, sym]) for k in lt.WEIGHTS},
+            roce_3y=pct(a["roce3"]), roe_3y=pct(a["roe3"]), debt_equity=r2(a["de"]),
+            sales_cagr_3y=pct(a["sales_cagr3"]), profit_cagr_3y=pct(a["profit_cagr3"]),
+            profit_up_years_5=r2(a["profit_up5"]), cfo_to_profit_3y=r2(a["cfo_ratio"]),
+            pe=r2(sn.get("pe")), peg=r2(sn.get("peg")), market_cap_cr=r2(sn.get("market_cap_cr")),
+            ret_6m=r2((cl / c[sym].iloc[-127] - 1) * 100),
+            ret_12m=r2((cl / c[sym].iloc[-253] - 1) * 100),
+            pct_of_52w_high=r2(cl / panel.high[sym].iloc[-252:].max() * 100),
+            turnover_cr=r2(f.turnover20.at[last, sym] / sc.CRORE)))
+    counts["longterm"] = _dump(out, "longterm", lrows)
+
+    shown = list(dict.fromkeys([r["symbol"] for r in rows] + [r["symbol"] for r in lrows]))
+
+    # 2. Candles with the 50 and 200 DMA and 20 EMA.
     ph = []
-    for sym in top:
+    for sym in shown:
         sub = pd.DataFrame({"open": panel.open[sym], "high": panel.high[sym], "low": panel.low[sym],
                             "close": c[sym], "volume": panel.volume[sym],
-                            "sma50": f.sma50[sym], "ema20": f.ema20[sym]})
+                            "sma50": f.sma50[sym], "sma200": f.sma200[sym], "ema20": f.ema20[sym]})
         for d, r in sub.dropna(subset=["close"]).iloc[-HISTORY_SESSIONS:].iterrows():
             ph.append(dict(symbol=sym, date=str(d.date()), open=r2(r.open), high=r2(r.high),
                            low=r2(r.low), close=r2(r.close),
                            volume=int(r.volume) if np.isfinite(r.volume) else None,
-                           sma50=r2(r.sma50), ema20=r2(r.ema20)))
+                           sma50=r2(r.sma50), sma200=r2(r.sma200), ema20=r2(r.ema20)))
     counts["price_history"] = _dump(out, "price_history", ph)
 
     # 2b. Automatic support and resistance over the same sessions.
     tl = []
-    for sym in top:
+    for sym in shown:
         sub = pd.DataFrame({"low": panel.low[sym], "high": panel.high[sym], "close": c[sym]})
         sub = sub.dropna().iloc[-HISTORY_SESSIONS:].rename_axis("date").reset_index()
         tl += [dict(symbol=sym, **line) for line in trend_lines(sub)]
@@ -141,7 +197,7 @@ def build(out: Path, start: str, offline: bool = False) -> dict:
 
     # 4. Company cards.
     cm, qh, hh = [], [], []
-    for sym in top:
+    for sym in shown:
         sn = fu.snapshot(sym)
         if sn is None:
             continue
@@ -160,9 +216,64 @@ def build(out: Path, start: str, offline: bool = False) -> dict:
     manifest = dict(as_of=str(last.date()), regime=reg.regime.loc[last],
                     breadth_pct=r2(reg.breadth.loc[last] * 100),
                     built_at=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-                    picks=list(top), rows=counts)
+                    mid_term={n: [r["symbol"] + ("*" if r["filled"] else "") for r in rows
+                                  if r["segment"] == n] for n in SEGMENTS},
+                    long_term={n: [r["symbol"] for r in lrows if r["segment"] == n] for n in SEGMENTS},
+                    rows=counts)
     (out / "manifest.json").write_text(json.dumps(manifest, indent=2))
     return manifest
+
+
+MID_VARIANTS = {"with_regime": "", "by_segment": ", 10 per size",
+                "by_segment_filled": ", 10 per size, gaps filled"}
+EXIT_RULES = {"hold_12m": "Hold 12 months",
+              "exit_below_200dma": "Hold 12 months, sell 10% under the 200 DMA"}
+
+
+def _long_row(row, period, size, rule, o, passes=None) -> dict:
+    return dict(row=row, period=period, size=size, exit_rule=rule, trades=o.get("trades", 0),
+                win_rate=pct(o.get("win_rate")), avg_net_return=pct(o.get("avg_net_return")),
+                avg_segment_return=pct(o.get("avg_segment_return")),
+                avg_nifty500_return=pct(o.get("avg_nifty500_return")),
+                avg_excess_segment=pct(o.get("avg_excess_segment")),
+                years_beating_pct=pct(o.get("years_beating_segment")), passes=passes)
+
+
+def _long_backtest_files(out: Path) -> dict:
+    """Long Term tab, from the committed results of the last long-term backtest."""
+    path = Path("results/backtest_long_summary.json")
+    if not path.exists():
+        return {"long_backtest_summary": _dump(out, "long_backtest_summary", []),
+                "long_backtest_by_year": _dump(out, "long_backtest_by_year", [])}
+    js = json.loads(path.read_text())
+    best = js["chosen_exit"]
+    other = next(e for e in EXIT_RULES if e != best)
+    res = js["results"]
+    m, alt = res[f"model/{best}"], res[f"model/{other}"]
+    p_ok = lambda o: bool(o.get("trades") and o["avg_excess_segment"] >= 0.03  # noqa: E731
+                          and o["years_beating_segment"] >= 0.6)
+    rows = [
+        _long_row("tune-all", "2017–2021 (tuning)", "All sizes", EXIT_RULES[best], m["tune_2017_2021"], p_ok(m["tune_2017_2021"])),
+        _long_row("check-all", "2022 on (unseen)", "All sizes", EXIT_RULES[best], m["check_2022_on"], p_ok(m["check_2022_on"])),
+    ]
+    rows += [_long_row(f"all-{k}", "All years", SIZE_LABEL[k] + "s", EXIT_RULES[best], m["by_segment"][k])
+             for k in SEGMENTS if k in m["by_segment"]]
+    rows += [
+        _long_row("tune-alt", "2017–2021 (tuning)", "All sizes", EXIT_RULES[other], alt["tune_2017_2021"], p_ok(alt["tune_2017_2021"])),
+        _long_row("check-alt", "2022 on (unseen)", "All sizes", EXIT_RULES[other], alt["check_2022_on"], p_ok(alt["check_2022_on"])),
+    ]
+    for v, label in (("fundamentals_only", "fundamentals only"), ("technical_only", "chart only")):
+        if f"{v}/hold_12m" in res:
+            rows.append(_long_row(f"check-{v}", f"2022 on, {label}", "All sizes", EXIT_RULES["hold_12m"],
+                                  res[f"{v}/hold_12m"]["check_2022_on"]))
+    by = pd.read_csv("results/backtest_long_by_year.csv")
+    by = by[by.exit_rule == best]
+    years = [dict(year=int(r.year), size=SIZE_LABEL[r.segment] + "s", trades=int(r.trades),
+                  avg_net_return=pct(r.avg_net_return), avg_segment_return=pct(r.avg_segment_return),
+                  avg_nifty500_return=pct(r.avg_nifty500_return), avg_excess_segment=pct(r.avg_excess_segment))
+             for r in by.itertuples()]
+    return {"long_backtest_summary": _dump(out, "long_backtest_summary", rows),
+            "long_backtest_by_year": _dump(out, "long_backtest_by_year", years)}
 
 
 def _backtest_files(out: Path) -> dict:
@@ -182,9 +293,9 @@ def _backtest_files(out: Path) -> dict:
         js = json.loads((path / "backtest_summary.json").read_text())
         for k, o in js["results"].items():
             h, variant = k.split("/")
-            if variant != "with_regime" or not o.get("trades"):
+            if variant not in MID_VARIANTS or not o.get("trades"):
                 continue
-            summ.append(dict(universe=name, horizon=h.replace("_", " ").capitalize(),
+            summ.append(dict(universe=name, horizon=h.replace("_", " ").capitalize() + MID_VARIANTS[variant],
                              trades=o["trades"], hit_rate=r2(o["hit_rate"] * 100),
                              win_rate=r2(o["win_rate"] * 100), avg_r=round(o["avg_r"], 3),
                              avg_net_return=r2(o["avg_net_return"] * 100),
@@ -193,6 +304,7 @@ def _backtest_files(out: Path) -> dict:
                              passes=o["passes"]))
     counts["backtest_by_year"] = _dump(out, "backtest_by_year", by)
     counts["backtest_summary"] = _dump(out, "backtest_summary", summ)
+    counts.update(_long_backtest_files(out))
 
     t = pd.read_csv("results/trades_next_month.csv.gz")
     t = t[t.triggered]
