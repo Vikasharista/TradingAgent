@@ -51,15 +51,21 @@ def _has_quarters(html: str) -> bool:
     return q is not None and q.shape[1] >= 5
 
 
-def fetch(symbols: list[str], refresh: bool = False) -> None:
-    """Cache each symbol's page: consolidated if it has results, else standalone."""
+def fetch(symbols: list[str], refresh: bool = False, max_age_days: float = MAX_AGE_DAYS,
+          limit: int | None = None) -> None:
+    """Cache each symbol's page: consolidated if it has results, else standalone.
+
+    Pages older than max_age_days are fetched again, oldest first; limit caps
+    how many are fetched in one call (missing pages always count first)."""
     CACHE.mkdir(parents=True, exist_ok=True)
     session = requests.Session()
-    todo = []
+    age = {}
     for s in symbols:
         p = CACHE / f"{s}.html"
-        if refresh or not p.exists() or time.time() - p.stat().st_mtime > MAX_AGE_DAYS * 86400:
-            todo.append(s)
+        a = float("inf") if not p.exists() else time.time() - p.stat().st_mtime
+        if refresh or a > max_age_days * 86400:
+            age[s] = a
+    todo = sorted(age, key=age.get, reverse=True)[:limit]
     for n, sym in enumerate(todo, 1):
         html = None
         for path in (f"{quote(sym)}/consolidated/", f"{quote(sym)}/"):
@@ -116,8 +122,12 @@ def parse(sym: str) -> dict[str, pd.Series] | None:
     html = p.read_text()
     q, pl = _section(html, "quarters"), _section(html, "profit-loss")
     bs, sh = _section(html, "balance-sheet"), _section(html, "shareholding")
+    cf, ra = _section(html, "cash-flow"), _section(html, "ratios")
     equity = _series(bs, "Equity Capital").add(_series(bs, "Reserves"), fill_value=0)
     return dict(
+        y_sales=_series(pl, "Sales").combine_first(_series(pl, "Revenue")),
+        y_cfo=_series(cf, "Cash from Operating Activity"),
+        y_roce=_series(ra, "ROCE %") / 100,
         q_sales=_series(q, "Sales").combine_first(_series(q, "Revenue")),
         q_profit=_series(q, "Net Profit"),
         q_eps=_series(q, "EPS in Rs"),

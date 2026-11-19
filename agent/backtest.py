@@ -19,6 +19,7 @@ import pandas as pd
 
 from . import regime as rg
 from . import scoring as sc
+from .selection import pick_by_segment
 from .data import INDIA_VIX, NIFTY500, Panel, load_index, load_prices
 from .universe import load_universe
 
@@ -212,10 +213,11 @@ def run(panel: Panel, uni: pd.DataFrame, index_close: pd.Series,
         ok &= ~t2t.reindex_like(ok).fillna(False).astype(bool)
     regime = rg.market_regime(index_close, panel.close, vix)
 
+    month, month_extra = sc.score_month(f, industry, fundamentals)
     scores = {
         "next_day": sc.score_day(f, delivery_pct)[0],
         "next_week": sc.score_week(f)[0],
-        "next_month": sc.score_month(f, industry, fundamentals)[0],
+        "next_month": month,
     }
     test_dates = panel.close.index[panel.close.index >= pd.Timestamp(test_from)]
     # The last signal date must leave room for the longest holding period.
@@ -242,6 +244,37 @@ def run(panel: Panel, uni: pd.DataFrame, index_close: pd.Series,
             if variant == "with_regime":
                 trades.to_csv(OUT / f"trades_{h.name}.csv.gz", index=False)
             print(h.name, variant, json.dumps(overall), flush=True)
+
+    # Next month split by size: 10 large, 10 mid, 10 small (no microcaps), on
+    # days that are not risk-off; "filled" tops up a short size with the best
+    # scores that miss the trend template.
+    h = next(x for x in HORIZONS if x.name == "next_month")
+    on = regime.loc[test_dates, "regime"].ne("risk_off")
+    okm = ok.loc[test_dates] & segment.isin(["large", "mid", "small"]).to_numpy()[None, :]
+    gated = month.loc[test_dates].where(okm)
+    loose = month_extra["ungated"].loc[test_dates].where(okm)
+    for variant, fill in (("by_segment", False), ("by_segment_filled", True)):
+        picks = []
+        for dt in test_dates[on.to_numpy()]:
+            for p in pick_by_segment(gated.loc[dt], loose.loc[dt] if fill else None, segment):
+                picks.append((dt, p["symbol"], p["score"], p["filled"]))
+        if not picks:
+            continue
+        trades = simulate(h, [x[:3] for x in picks], f, segment, index_close)
+        if trades.empty or not trades["triggered"].any():
+            continue
+        filled = {(x[0], x[1]) for x in picks if x[3]}
+        trades["filled"] = [(d, sy) in filled for d, sy in zip(trades["date"], trades["symbol"])]
+        by_year, overall = summarise(trades)
+        overall["by_segment"] = {}
+        for seg_name, g in trades[trades["triggered"]].groupby("segment"):
+            overall["by_segment"][seg_name] = summarise(g.assign(triggered=True))[1]
+        if fill and trades["filled"].any():
+            overall["filled_only"] = summarise(trades[trades["filled"] == True])[1]  # noqa: E712
+        results[f"next_month/{variant}"] = overall
+        yearly.append(by_year.assign(horizon="next_month", variant=variant).reset_index())
+        trades.to_csv(OUT / f"trades_next_month_{variant}.csv.gz", index=False)
+        print("next_month", variant, json.dumps({k: v for k, v in overall.items() if k != "by_segment"}), flush=True)
 
     regime_share = regime.loc[test_dates, "regime"].value_counts(normalize=True).round(3).to_dict()
     summary = dict(
