@@ -13,6 +13,7 @@ rights (see adjustment_factors).
 from __future__ import annotations
 
 import io
+import random
 import time
 import zipfile
 from concurrent.futures import ThreadPoolExecutor
@@ -44,7 +45,7 @@ class Holiday(Exception):
 
 def _get(session: requests.Session, url: str) -> bytes | None:
     """Body of url, or None on 404 (no file for that day)."""
-    for attempt in range(5):
+    for attempt in range(6):
         try:
             r = session.get(url, headers=HEADERS, timeout=30)
             if r.status_code == 404:
@@ -52,7 +53,8 @@ def _get(session: requests.Session, url: str) -> bytes | None:
             r.raise_for_status()
             return r.content
         except requests.RequestException:
-            time.sleep(2 ** attempt)
+            # NSE throttles fast clients (403/429), especially home connections.
+            time.sleep(2 ** attempt + random.random())
     raise RuntimeError(f"failed to download {url}")
 
 
@@ -137,8 +139,11 @@ def _day_paths(d: date) -> tuple[Path, Path, Path]:
             CACHE / "holidays" / f"{d:%Y%m%d}")
 
 
-def sync(start: str, end: str | None = None, workers: int = 16) -> None:
-    """Download every missing weekday between start and end (default today)."""
+def sync(start: str, end: str | None = None, workers: int = 6) -> None:
+    """Download every missing weekday between start and end (default today).
+
+    A day that still fails after retries is skipped, not marked as a holiday,
+    so the next run fetches it again."""
     for sub in ("eq", "idx", "holidays"):
         (CACHE / sub).mkdir(parents=True, exist_ok=True)
     first = pd.Timestamp(start).date()
@@ -157,16 +162,23 @@ def sync(start: str, end: str | None = None, workers: int = 16) -> None:
             if d < last:
                 hol_p.touch()
             return "holiday"
+        except RuntimeError:
+            return "failed"
         eq.to_parquet(eq_p, index=False)
         idx.to_parquet(idx_p, index=False)
         return "ok"
 
-    done = 0
+    done, failed = 0, []
     with ThreadPoolExecutor(workers) as pool:
-        for _ in pool.map(one, todo):
+        for d, status in zip(todo, pool.map(one, todo)):
             done += 1
+            if status == "failed":
+                failed.append(d)
             if done % 100 == 0 or done == len(todo):
                 print(f"nse: {done}/{len(todo)} days", flush=True)
+    if failed:
+        print(f"nse: {len(failed)} days could not be downloaded (e.g. {failed[0]}); "
+              "run again later to fill them in", flush=True)
 
 
 def _symbol_map() -> dict[str, str]:

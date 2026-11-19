@@ -6,9 +6,6 @@ on:
       test_from:
         description: First signal date to test
         default: "2019-01-01"
-  push:
-    branches: ["claude/**"]
-    paths: ["agent/**", ".github/workflows/backtest.yml"]
 
 permissions:
   contents: write
