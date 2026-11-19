@@ -21,7 +21,7 @@ The rules are set out in the [strategy and scoring spec](https://claude.ai/artif
 | `agent/selection.py` | Splits a day's scores into 10 large, 10 mid and 10 small caps |
 | `agent/longterm.py` | The long-term (1 to 3 year) score from annual accounts and the 200 DMA trend |
 | `agent/backtest_long.py` | Backtest of the long-term list: monthly picks held up to 12 months |
-| `agent/dashboard.py` | Builds the dashboard's data files for the nightly refresh |
+| `agent/dashboard.py` | Builds the dashboard's data files for the nightly refresh, including 3 years of prices and a one-year picks history rebuilt from point-in-time data |
 | `results/` | Backtest output, written by the Backtest workflow |
 
 ## Running the backtest

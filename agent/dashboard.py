@@ -3,13 +3,17 @@
     python -m agent.dashboard --out dashboard_data
 
 Writes one JSON file per dashboard dataset (watchlist, price history, market
-regime, company cards, backtest results) into --out, plus manifest.json with
-the as-of date. The nightly run uploads these to the dashboard.
+regime, picks history, company cards, backtest results) into --out, plus
+manifest.json with the as-of date. The nightly run uploads these to the
+dashboard.
 
-Only the last few years of prices are needed for today's scores, so a fresh
-machine downloads about three years of NSE files (a few minutes). Fundamentals
-are fetched only for the stocks whose technical score puts them in contention,
-since the fundamentals pillar carries 20 of the 100 points.
+The dashboard's date-range filter reaches back 3 years of prices, so a fresh
+machine downloads about four years of NSE files (the extra year warms up the
+200 DMA). The picks history rebuilds each of the last 250 sessions' lists from
+data known on that day, so it needs no stored state between runs.
+Fundamentals are fetched only for stocks whose technical score put them in
+contention on one of those days, since the fundamentals pillar carries 20 of
+the 100 points.
 """
 
 from __future__ import annotations
@@ -34,8 +38,9 @@ from .universe import load_universe
 CONTENDERS = 30          # per size: stocks whose quarterly results are refreshed each night
 LONG_MAX_AGE_DAYS = 30   # annual accounts for the long-term list change slowly
 LONG_FETCH_LIMIT = 80    # pages refreshed per night for the long-term list
-HISTORY_SESSIONS = 250   # candles shown per stock
-REGIME_SESSIONS = 500
+HISTORY_SESSIONS = 750   # candles shown per stock (about 3 years)
+REGIME_SESSIONS = 750
+PICKS_SESSIONS = 250     # sessions of rebuilt daily picks (about 1 year)
 SIZE_LABEL = {"large": "Large cap", "mid": "Mid cap", "small": "Small cap"}
 EXIT_LABELS = {"stop": "Stopped out", "expired": "Held to 60 sessions",
                "trail": "Trailed out (50 DMA)",
@@ -96,6 +101,13 @@ def build(out: Path, start: str, offline: bool = False) -> dict:
     # contenders only (they carry 20 of the 100 points).
     tech, tech_extra = sc.score_month(f, industry)
     contenders = _contenders(tech.loc[last].where(okl), tech_extra["ungated"].loc[last].where(okl), seg)
+    # The picks history rebuilds each past day's lists the same way, so it
+    # needs the quarterly results of every stock that was in contention on
+    # any of those days.
+    hdates = c.index[-PICKS_SESSIONS:]
+    ht, hu = tech.loc[hdates].where(ok.loc[hdates]), tech_extra["ungated"].loc[hdates].where(ok.loc[hdates])
+    hist_contenders = list(dict.fromkeys(contenders + [s for d in hdates for s in _contenders(ht.loc[d], hu.loc[d], seg)]))
+    contenders = hist_contenders
     if not offline:
         fu.fetch(contenders)
         fu.fetch(sized, max_age_days=LONG_MAX_AGE_DAYS, limit=LONG_FETCH_LIMIT)
@@ -161,6 +173,20 @@ def build(out: Path, start: str, offline: bool = False) -> dict:
             pct_of_52w_high=r2(cl / panel.high[sym].iloc[-252:].max() * 100),
             turnover_cr=r2(f.turnover20.at[last, sym] / sc.CRORE)))
     counts["longterm"] = _dump(out, "longterm", lrows)
+
+    # 1c. Picks history: each past session's lists, rebuilt with the data
+    # known on that day (fundamentals are lagged to their publication date).
+    hrows = []
+    sc_h, ug_h, ls_h = score.loc[hdates].where(ok.loc[hdates]), extra["ungated"].loc[hdates].where(ok.loc[hdates]), lscore.loc[hdates].where(ok.loc[hdates])
+    for d in hdates:
+        ds = str(d.date())
+        for lst, picks in (("mid", pick_by_segment(sc_h.loc[d], ug_h.loc[d], seg)),
+                           ("long", pick_by_segment(ls_h.loc[d], None, seg))):
+            for pk in picks:
+                hrows.append(dict(date=ds, list=lst, symbol=pk["symbol"], size=SIZE_LABEL[pk["segment"]],
+                                  rank=pk["rank"], score=r2(pk["score"]), filled=pk["filled"],
+                                  close=r2(c.at[d, pk["symbol"]]), close_now=r2(c.at[last, pk["symbol"]])))
+    counts["picks_history"] = _dump(out, "picks_history", hrows)
 
     shown = list(dict.fromkeys([r["symbol"] for r in rows] + [r["symbol"] for r in lrows]))
 
@@ -335,7 +361,7 @@ def _backtest_files(out: Path) -> dict:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="dashboard_data")
-    ap.add_argument("--years", type=float, default=3.0, help="years of price history to load")
+    ap.add_argument("--years", type=float, default=4.0, help="years of price history to load")
     ap.add_argument("--offline", action="store_true", help="use cached files only")
     args = ap.parse_args()
     start = (pd.Timestamp.today() - pd.DateOffset(days=int(args.years * 365))).strftime("%Y-%m-%d")
